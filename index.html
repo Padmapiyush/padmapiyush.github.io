@@ -11,6 +11,9 @@
 
         <title>Padmapiyush</title>
         <link rel="icon" href="assets/img/icon.png" type="image/icon">
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+       <script type="text/javascript">
+       (function(){ emailjs.init("deG9ezTSmdJtt90G6");})();</script>
     </head>
     <body>
         <!--===== HEADER =====-->
@@ -210,11 +213,11 @@
                 <h2 class="section-title">Contact</h2>
 
                 <div class="contact__container bd-grid">
-                    <form action="" class="contact__form">
-                        <input type="text" placeholder="Name" class="contact__input">
-                        <input type="mail" placeholder="Email" class="contact__input">
-                        <textarea name="" id="" cols="0" rows="10" class="contact__input"></textarea>
-                        <input type="button" value="Message me" class="contact__button button">
+                    <form class="contact__form" onsubmit="sendEmail(); reset(); return false;">
+                        <input type="text" placeholder="Name" class="contact__input" id="contact_name">
+                        <input type="mail" placeholder="Email" class="contact__input" id="contact_email">
+                        <textarea placeholder="Message" id="contact_message" cols="0" rows="10" class="contact__input"></textarea>
+                        <button type="submit" class="contact__button button" >Send</button>
                     </form>
                 </div>
             </section>
@@ -228,9 +231,9 @@
                 <a href="https://www.instagram.com/piyush_gayatri/" class="footer__icon"><i class='bx bxl-instagram' ></i></a>
                 <a href="https://twitter.com/piyush_gayatri" class="footer__icon"><i class='bx bxl-twitter' ></i></a>
                 <a href="https://github.com/padmapiyush" class="footer__icon"><i class='bx bxl-github' ></i></a>
-                <a href="mailto:padmapiyush2801@gmail.com" class="footer__icon"><i class='bx bx-envelope' ></i></a>
+                <a href="mailto:padmapiyush2801@gmail.com" class="footer__icon"><i class='bx bxl-gmail' ></i></a>
             </div>
-            <p class="footer__copy">&#169; Padmapiyush. All rigths reserved</p>
+            <p class="footer__copy">&#169; Padmapiyush. All rights reserved</p>
         </footer>
 
 
