@@ -383,6 +383,7 @@ img {
 .work__img:hover .overlay {
   opacity:0.8;
 }
+
 .text {
   color: black;
   font-size: 20px;
