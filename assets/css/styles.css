@@ -1067,7 +1067,7 @@ img {
   width: 3px;
   height: 3px;
   background: transparent;
-  animation: animStar 150s linear infinte;
+  animation: animStar 150s linear infinite;
   box-shadow: 387px 1878px #000000, 760px 1564px #000000, 1487px 999px #000000,
   948px 1828px #000000, 1977px 1001px #000000, 1284px 1963px #000000, 656px 284px #000000,
   1268px 1635px #000000, 1820px 598px #000000, 642px 1900px #000000, 296px 57px #000000,
