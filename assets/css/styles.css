@@ -225,6 +225,7 @@ img {
   color: var(--first-color);
 }
 
+
 .home__img {
   position: absolute;
   right: 0;
@@ -252,7 +253,7 @@ img {
 }
 
 .button:hover {
-  box-shadow: 0px 10px 36px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 10px 0 #ffffff inset, 0 0 10px 3px #AF5DB4;
 }
 
 /* ===== ABOUT =====*/
