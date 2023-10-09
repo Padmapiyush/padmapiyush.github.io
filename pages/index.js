@@ -8,6 +8,7 @@ export default function Home() {
       <h1>
         padmapiyush:$ <span className={styles.help}>type help to start</span>
       </h1>
+      
       <Terminal />
     </div>
   );

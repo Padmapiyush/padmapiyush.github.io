@@ -16,7 +16,7 @@ const COMMANDS = [
     description: "My Tech Projects",
   },
   {
-    command: "contact",
+    command: "contacts",
     description: "Contact Me",
   },
   {
@@ -27,7 +27,7 @@ const COMMANDS = [
     command:
       // 'clear <span style="color: var(--primary)">(Ctrl+L shortcut)</span>',
       "clear",
-    description: "Clear terminal",
+    description: "Clear Terminal",
   },
 ];
 
