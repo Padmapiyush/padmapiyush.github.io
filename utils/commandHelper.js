@@ -100,7 +100,7 @@ export const CONTENTS = {
   error: (input) =>
     `<div class="help-command">sh: Unknown command: ${input}</div><div class="help-command">See \`help\` for info`,
   resume: () => {
-    window.open("https://drive.google.com/file/d/1Z2nUAIa6JmOROGqtCVFYlBCnH31JqW-_/view?usp=sharing", "_blank");
+    window.open("https://drive.google.com/file/d/14bikRoLOfn6R8Vr2n1auxisV51F_8HB6/view?usp=sharing", "_blank");
     return "";
   },
 };
