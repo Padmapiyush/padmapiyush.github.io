@@ -89,11 +89,11 @@ export const CONTENTS = {
     <br /> BCA, 2022 <br /> <a href="https://www.iul.ac.in/" target="_blank">Integral University, Lucknow</a>.`,
   skills: () => `
   I am experienced with Java, Python and the web technologies dominating at the time: <br />
-  <div class="skill"><b>core</b>: JavaScript, Java, Python, Linux, Git, SQL<br /></div>
-  <div class="skill"><b>frameworks</b>: React, Express, Tableau, Google Cloud Platform, Android<br /></div>
-  <div class="skill"><b>database</b>: MongoDB, PostgreSQL, MySQL <br /></div>.
+  <div class="skill"><b>core</b>: Python, Linux, Git, SQL<br /></div>
+  <div class="skill"><b>Tools:</b>:MS Power BI, Google Cloud Platform<br /></div>
+  <div class="skill"><b>database</b>: MongoDB, MySQL <br /></div>.
 <br /><br />
-  I also have experience with Android Development.
+  I also have experience with Exploratory Data Analysis.
   `,
   projects: getProjects,
   contact: getContacts,
