@@ -31,14 +31,77 @@ const COMMANDS = [
   },
 ];
 
+const FALLBACK_PROJECTS = [
+  {
+    name: "FORECAST SALES REVENUE",
+    description:
+      "Developed a robust machine learning model using Python and scikit-learn to forecast sales revenue.",
+    stack: ["Python", "scikit-learn", "Pandas", "Numpy", "Matplotlib"],
+    link: "https://github.com/Padmapiyush/forecasting-sales-revenue",
+  },
+  {
+    name: "Summarizer",
+    description:
+      "This code provides Summary of a PDF document using PyPDF2 library to extract text from a PDF document and NLTK library for NLP processing.",
+    stack: ["Python", "PyPDF2", "NLTK"],
+    link: "https://new-delhi-space-society.github.io/",
+  },
+  {
+    name: "sentiment-analysis",
+    description:
+      "Conducted sentiment analysis on customer reviews using natural language processing techniques in Python.",
+    stack: ["Python", "NLTK", "Pandas", "Numpy"],
+    link: "https://dpsgoethequiz.com",
+  },
+  {
+    name: "COVID-19 Tracker",
+    description: "Developed a COVID-19 Tracker using ReactJS and Material UI.",
+    stack: ["ReactJS", "Material UI"],
+  },
+];
+
+const FALLBACK_CONTACTS = [
+  {
+    medium: "github",
+    username: "Padmapiyush",
+    link: "https://github.com/padmapiyush",
+  },
+  {
+    medium: "email",
+    username: "thepadmapiyush@gmail.com",
+    link: "mailto:thepadmapiyush@gmail.com",
+  },
+  {
+    medium: "facebook",
+    username: "Padmapiyush Pathak",
+    link: "https://www.facebook.com/thepadmapiyush/",
+  },
+  {
+    medium: "linkedin",
+    username: "Padmapiyush",
+    link: "https://www.linkedin.com/in/padmapiyush/",
+  },
+];
+
 const getProjects = async () => {
-  const projects = await (await fetch("/api/projects")).json();
+  let projects = FALLBACK_PROJECTS;
+
+  try {
+    const response = await fetch("/api/projects");
+    if (response.ok) {
+      projects = await response.json();
+    }
+  } catch {
+    // Next.js API routes are unavailable on static hosting (e.g. GitHub Pages).
+    // Fall back to local data so the terminal command always works.
+  }
+
   const projectHTML =
     `<h3>My Projects (You can scroll)</h3>` +
     projects
       .map(
         (project) => `<div class="command">
-        <a href="${project.link}" target="_blank"><b class="command">${
+        <a href="${project.link || "#"}" target="_blank"><b class="command">${
           project.name
         }</b></a> - <b>${project.stack.join(", ")}</b>
         <p class="meaning">${project.description}</p>
@@ -49,7 +112,18 @@ const getProjects = async () => {
 };
 
 const getContacts = async () => {
-  const contactMediums = await (await fetch("/api/contacts")).json();
+  let contactMediums = FALLBACK_CONTACTS;
+
+  try {
+    const response = await fetch("/api/contacts");
+    if (response.ok) {
+      contactMediums = await response.json();
+    }
+  } catch {
+    // Next.js API routes are unavailable on static hosting (e.g. GitHub Pages).
+    // Fall back to local data so the terminal command always works.
+  }
+
   return contactMediums
     .map(
       (contact) => `<div style="display: flex; justify-content: space-between;">
@@ -97,6 +171,7 @@ export const CONTENTS = {
   `,
   projects: getProjects,
   contact: getContacts,
+  contacts: getContacts,
   error: (input) =>
     `<div class="help-command">sh: Unknown command: ${input}</div><div class="help-command">See \`help\` for info`,
   resume: () => {
