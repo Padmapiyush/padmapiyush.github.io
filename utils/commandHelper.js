@@ -9,11 +9,11 @@ const COMMANDS = [
   },
   {
     command: "skills",
-    description: "My Tech Skills",
+    description: "Data Engineering Skills",
   },
   {
     command: "projects",
-    description: "My Tech Projects",
+    description: "Data Projects",
   },
   {
     command: "contacts",
@@ -31,50 +31,58 @@ const COMMANDS = [
   },
 ];
 
-const FALLBACK_PROJECTS = [
+const PROJECTS = [
   {
-    name: "FORECAST SALES REVENUE",
+    name: "Customer Churn & Retention Analytics",
     description:
-      "Developed a robust machine learning model using Python and scikit-learn to forecast sales revenue.",
-    stack: ["Python", "scikit-learn", "Pandas", "Numpy", "Matplotlib"],
-    link: "https://github.com/Padmapiyush/forecasting-sales-revenue",
+      "Built an end-to-end analytics project that segments customers, detects churn risk, and tracks retention KPIs with interactive Power BI dashboards and SQL models.",
+    stack: ["SQL", "Python", "Pandas", "Power BI", "A/B Testing"],
+    link: "https://github.com/Padmapiyush/customer-churn-retention-analytics",
   },
   {
-    name: "Summarizer",
+    name: "Supply Chain Performance Intelligence",
     description:
-      "This code provides Summary of a PDF document using PyPDF2 library to extract text from a PDF document and NLTK library for NLP processing.",
-    stack: ["Python", "PyPDF2", "NLTK"],
-    link: "https://new-delhi-space-society.github.io/",
+      "Created a data analytics solution to analyze procurement, delivery SLAs, and vendor performance; includes KPI trend analysis and anomaly detection for operational decisions.",
+    stack: ["SQL Server", "Python", "Excel", "Power BI", "Statistics"],
+    link: "https://github.com/Padmapiyush/supply-chain-performance-intelligence",
   },
   {
-    name: "sentiment-analysis",
+    name: "Azure Medallion Lakehouse Pipeline",
     description:
-      "Conducted sentiment analysis on customer reviews using natural language processing techniques in Python.",
-    stack: ["Python", "NLTK", "Pandas", "Numpy"],
-    link: "https://dpsgoethequiz.com",
+      "Designed a Bronze-Silver-Gold lakehouse on Azure with ADF, Databricks (PySpark), and Delta tables. Added data quality checks, orchestration, and cost-aware transformations.",
+    stack: [
+      "Azure Data Factory",
+      "Databricks",
+      "PySpark",
+      "Delta Lake",
+      "SQL",
+    ],
+    link: "https://github.com/Padmapiyush/azure-medallion-lakehouse-pipeline",
   },
   {
-    name: "COVID-19 Tracker",
-    description: "Developed a COVID-19 Tracker using ReactJS and Material UI.",
-    stack: ["ReactJS", "Material UI"],
+    name: "Real-Time Orders Streaming Platform",
+    description:
+      "Engineered a streaming data platform that ingests live order events, performs near-real-time aggregations, and serves operational metrics with automated data pipeline monitoring.",
+    stack: ["Kafka", "Spark Structured Streaming", "Docker", "Airflow", "dbt"],
+    link: "https://github.com/Padmapiyush/realtime-orders-streaming-platform",
   },
 ];
 
-const FALLBACK_CONTACTS = [
+const CONTACTS = [
   {
     medium: "github",
     username: "Padmapiyush",
     link: "https://github.com/padmapiyush",
   },
   {
+    medium: "mobile",
+    username: "9532683568",
+    link: "tel:+919532683568",
+  },
+  {
     medium: "email",
     username: "thepadmapiyush@gmail.com",
     link: "mailto:thepadmapiyush@gmail.com",
-  },
-  {
-    medium: "facebook",
-    username: "Padmapiyush Pathak",
-    link: "https://www.facebook.com/thepadmapiyush/",
   },
   {
     medium: "linkedin",
@@ -83,22 +91,10 @@ const FALLBACK_CONTACTS = [
   },
 ];
 
-const getProjects = async () => {
-  let projects = FALLBACK_PROJECTS;
-
-  try {
-    const response = await fetch("/api/projects");
-    if (response.ok) {
-      projects = await response.json();
-    }
-  } catch {
-    // Next.js API routes are unavailable on static hosting (e.g. GitHub Pages).
-    // Fall back to local data so the terminal command always works.
-  }
-
+const getProjects = () => {
   const projectHTML =
     `<h3>My Projects (You can scroll)</h3>` +
-    projects
+    PROJECTS
       .map(
         (project) => `<div class="command">
         <a href="${project.link || "#"}" target="_blank"><b class="command">${
@@ -111,20 +107,8 @@ const getProjects = async () => {
   return projectHTML;
 };
 
-const getContacts = async () => {
-  let contactMediums = FALLBACK_CONTACTS;
-
-  try {
-    const response = await fetch("/api/contacts");
-    if (response.ok) {
-      contactMediums = await response.json();
-    }
-  } catch {
-    // Next.js API routes are unavailable on static hosting (e.g. GitHub Pages).
-    // Fall back to local data so the terminal command always works.
-  }
-
-  return contactMediums
+const getContacts = () => {
+  return CONTACTS
     .map(
       (contact) => `<div style="display: flex; justify-content: space-between;">
       <p style="font-size: 15px">${contact.medium}</p>
@@ -146,28 +130,28 @@ export const CONTENTS = {
       <div class="command">Type one of the above to view. For eg. <span style="color: var(--secondary)">about</span></div>`,
   about: () => `My name is Padmapiyush. I am ${getAge(
     "January 28, 2001"
-  )} and I\'m a Tech Enthusiast and a Software Developer, loving to play with data.
+  )} and I am a Data Engineering Analyst focused on turning raw data into production-ready data products.
     <br/><br/>
-    Exploring the realms of curiosity and constant enthusiasm, I'm a perpetual student who spends the majority of my time crafting intricate code, particularly in the captivating realm of JavaScript. Join me on this coding adventure, and let's bring our ideas to life together!
+    I currently work at <b>IDEMIA Public Security</b>, where I build and optimize ETL/ELT pipelines, cloud infrastructure, and analytics-ready datasets for business teams.
     <br /><br />
-    I love coding in C/C++, Java and Python, and have worked with frameworks like ReactJS, Express, MongoDB and MySQL. 
+    My core strengths include pipeline orchestration, data modeling, data quality, and performance tuning across modern cloud data stacks.
     <br /><br />
-    I am Club Lead at <a href="https://codeons.github.io" target="_blank">CodeOn</a> ('22-23).
+    I enjoy solving high-impact problems in analytics engineering, automation, and real-time processing using SQL, Python, PySpark, Databricks, and Azure services.
     <br />
-    I am also the Technical Lead at the Department of Computer Applications, of <a href="https://space.nss.org" target="_blank">GCET</a>.
-    <br />
-    As one of the Placement Co-ordinators, I am also responsible for all the placement activities at the Department of Computer Applications, of <a href="https://galgotiacollege.edu/welcome-to-gcet" target="_blank">GCET</a>.
+    Open to collaborating on data engineering and analytics projects that require scalable architecture and measurable business outcomes.
   `,
   education:
     () => `MCA, 2024 <br /> <a href="https://galgotiacollege.edu/welcome-to-gcet" target="_blank">Galgotias College of Engineering & Technology, Greater Noida</a> 
     <br /> BCA, 2022 <br /> <a href="https://www.iul.ac.in/" target="_blank">Integral University, Lucknow</a>.`,
   skills: () => `
-  I am experienced with Java, Python and the web technologies dominating at the time: <br />
-  <div class="skill"><b>core</b>: Python, Linux, Git, SQL<br /></div>
-  <div class="skill"><b>Tools:</b>:MS Power BI, Google Cloud Platform<br /></div>
-  <div class="skill"><b>database</b>: MongoDB, MySQL <br /></div>.
+  I build reliable analytics systems and data platforms with strong foundations in engineering and business intelligence: <br />
+  <div class="skill"><b>Languages</b>: SQL, Python, PySpark, T-SQL<br /></div>
+  <div class="skill"><b>Data Engineering</b>: ETL/ELT, Data Modeling, Data Warehousing, Data Quality, Batch + Streaming Pipelines<br /></div>
+  <div class="skill"><b>Cloud & Big Data</b>: Azure Data Factory, Azure Databricks, ADLS, Delta Lake, Kafka<br /></div>
+  <div class="skill"><b>Orchestration & DevOps</b>: Airflow, dbt, GitHub Actions, Terraform, CI/CD<br /></div>
+  <div class="skill"><b>Analytics & BI</b>: Power BI, Tableau, Excel, A/B Testing, KPI Design<br /></div>
 <br /><br />
-  I also have experience with Exploratory Data Analysis.
+  I also work on dashboard storytelling, experimentation, and performance optimization for production analytics workloads.
   `,
   projects: getProjects,
   contact: getContacts,
