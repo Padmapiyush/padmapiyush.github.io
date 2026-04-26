@@ -1,0 +1,30 @@
+[
+  {
+    "id": "deq-1",
+    "title": "Broken Daily ETL Pipeline",
+    "problem": "A daily batch job fails because source schema added a new nullable column and downstream transform crashes.",
+    "hint": "Think schema evolution + resilient parsing.",
+    "solution": "Add schema validation at ingestion, support permissive mode for unknown nullable columns, and enforce contract checks before transform. Alert on schema drift and version your downstream models."
+  },
+  {
+    "id": "deq-2",
+    "title": "Late Arriving Events in Streaming",
+    "problem": "Kafka events arrive late and dashboard numbers keep changing every refresh.",
+    "hint": "Use event time, watermark, and upsert strategy.",
+    "solution": "Process with event-time windows and watermark (e.g., 15 minutes). Store aggregates in mergeable tables (Delta/Iceberg) and perform idempotent upserts for late events."
+  },
+  {
+    "id": "deq-3",
+    "title": "Warehouse Cost Explosion",
+    "problem": "Monthly warehouse cost doubled after new dashboards launched.",
+    "hint": "Profile query patterns and optimize table design.",
+    "solution": "Introduce partitioning/clustering on common filters, materialize high-usage aggregates, add query limits for BI users, and monitor expensive queries with alerts."
+  },
+  {
+    "id": "deq-4",
+    "title": "PII Compliance in Data Lake",
+    "problem": "Raw zone contains PII fields consumed by too many teams.",
+    "hint": "Separate access layers + tokenization.",
+    "solution": "Implement column-level masking/tokenization, role-based policies, and curated gold views with only required attributes. Audit data access and add retention rules."
+  }
+]

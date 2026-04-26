@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Wolf logo">
+  <rect width="128" height="128" fill="#0b0f0c" />
+  <path
+    fill="#f2f2f2"
+    d="M18 56 34 34l24 17 6-1 6 1 24-17 16 22-13 10-7 19-17-22-9 36H64l-9-36-17 22-7-19z"
+  />
+  <path fill="#0b0f0c" d="m64 50 7 19-7 30-7-30z" />
+  <path fill="#0b0f0c" d="m38 43 20 14-3 15-17-13zM90 43 70 57l3 15 17-13z" />
+  <path fill="#f2f2f2" d="m64 99 4 11-4 8-4-8z" />
+</svg>
