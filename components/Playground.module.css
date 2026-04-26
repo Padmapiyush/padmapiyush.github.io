@@ -1,20 +1,57 @@
 .fab {
   position: fixed;
   right: 24px;
-  bottom: 24px;
+  top: 24px;
   z-index: 50;
-  border: 1px solid var(--primary);
-  background: #111320;
-  color: var(--primary);
-  border-radius: 999px;
-  padding: 10px 16px;
+  min-width: 210px;
+  letter-spacing: 0.55em;
+  text-indent: 0.55em;
+  font-size: 40px;
+  line-height: 1;
+  padding: 12px 18px;
+  border: 1px solid #2de490;
+  color: #34f5a2;
+  border-radius: 4px;
+  background:
+    linear-gradient(rgba(30, 255, 145, 0.08), rgba(30, 255, 145, 0.08)),
+    repeating-linear-gradient(
+      0deg,
+      rgba(46, 225, 143, 0.15) 0,
+      rgba(46, 225, 143, 0.15) 1px,
+      transparent 1px,
+      transparent 18px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(46, 225, 143, 0.12) 0,
+      rgba(46, 225, 143, 0.12) 1px,
+      transparent 1px,
+      transparent 18px
+    ),
+    #07130f;
+  box-shadow:
+    0 0 12px rgba(48, 232, 149, 0.5),
+    inset 0 0 12px rgba(48, 232, 149, 0.2);
+  text-shadow: 0 0 8px rgba(52, 245, 162, 0.75);
   cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+.fab:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 0 16px rgba(48, 232, 149, 0.75),
+    inset 0 0 14px rgba(48, 232, 149, 0.3);
+}
+
+.fab:active {
+  transform: translateY(1px);
 }
 
 .panel {
   position: fixed;
   right: 24px;
-  bottom: 76px;
+  top: 110px;
   width: min(480px, calc(100vw - 32px));
   max-height: min(70vh, 720px);
   overflow-y: auto;
@@ -91,4 +128,45 @@
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+}
+
+.editorWrap {
+  margin-top: 14px;
+}
+
+.editorWrap label {
+  display: inline-block;
+  margin-bottom: 6px;
+  color: var(--secondary);
+}
+
+.editor {
+  width: 100%;
+  min-height: 120px;
+  border-radius: 10px;
+  border: 1px solid #2a3150;
+  background: #0c1322;
+  color: var(--text-color);
+  padding: 10px;
+  resize: vertical;
+}
+
+.result {
+  margin-top: 8px;
+}
+
+@media (max-width: 640px) {
+  .fab {
+    min-width: 150px;
+    font-size: 26px;
+    letter-spacing: 0.35em;
+    text-indent: 0.35em;
+    top: 12px;
+    right: 12px;
+  }
+
+  .panel {
+    right: 12px;
+    top: 78px;
+  }
 }

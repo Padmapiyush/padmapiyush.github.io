@@ -14,6 +14,8 @@ export default function Playground() {
   const [questIndex, setQuestIndex] = useState(0);
   const [showHint, setShowHint] = useState(false);
   const [showSolution, setShowSolution] = useState(false);
+  const [userSql, setUserSql] = useState("");
+  const [sqlCheckResult, setSqlCheckResult] = useState("");
 
   useEffect(() => {
     const loadData = async () => {
@@ -43,6 +45,9 @@ export default function Playground() {
 
   const sqlQuestion = currentSqlQuestions[sqlIndex];
   const quest = questData[questIndex];
+  const sqlStorageKey = sqlQuestion
+    ? `sql-playground:${difficulty}:${sqlQuestion.id}`
+    : null;
 
   const randomizeSql = () => {
     if (!currentSqlQuestions.length) return;
@@ -50,6 +55,7 @@ export default function Playground() {
     setSqlIndex(next);
     setShowHint(false);
     setShowSolution(false);
+    setSqlCheckResult("");
   };
 
   const randomizeQuest = () => {
@@ -60,10 +66,44 @@ export default function Playground() {
     setShowSolution(false);
   };
 
+  useEffect(() => {
+    if (!sqlStorageKey || typeof window === "undefined") return;
+    const saved = window.localStorage.getItem(sqlStorageKey) || "";
+    setUserSql(saved);
+    setSqlCheckResult("");
+  }, [sqlStorageKey]);
+
+  const normalizeQuery = (query) =>
+    query.toLowerCase().replace(/\s+/g, " ").replace(/;$/, "").trim();
+
+  const checkSqlAnswer = () => {
+    if (!sqlQuestion) return;
+
+    const user = normalizeQuery(userSql);
+    const expected = normalizeQuery(sqlQuestion.solution || "");
+
+    const keywordHeuristic = [
+      "select",
+      "from",
+      ...(sqlQuestion.hint || "")
+        .toLowerCase()
+        .split(/[^a-z0-9_]+/g)
+        .filter((part) => ["group", "by", "order", "count", "lag", "row_number"].includes(part)),
+    ];
+
+    const hasKeywords = keywordHeuristic.every((keyword) => user.includes(keyword));
+
+    if (user && (user === expected || hasKeywords)) {
+      setSqlCheckResult("✅ Looks correct! Great query structure.");
+    } else {
+      setSqlCheckResult("❌ Not quite yet. Try using the hint or compare with solution.");
+    }
+  };
+
   return (
     <>
       <button className={styles.fab} onClick={() => setOpen((prev) => !prev)}>
-        {open ? "Close Playground" : "Playground"}
+        {open ? "CLOSE" : "START"}
       </button>
 
       {open && (
@@ -116,6 +156,39 @@ export default function Playground() {
                   {showSolution && (
                     <pre className={styles.solution}>{sqlQuestion.solution}</pre>
                   )}
+
+                  <div className={styles.editorWrap}>
+                    <label htmlFor="sql-editor">SQL Canvas</label>
+                    <textarea
+                      id="sql-editor"
+                      className={styles.editor}
+                      placeholder="Write your SQL query here..."
+                      value={userSql}
+                      onChange={(e) => {
+                        const value = e.target.value;
+                        setUserSql(value);
+                        setSqlCheckResult("");
+                        if (sqlStorageKey && typeof window !== "undefined") {
+                          window.localStorage.setItem(sqlStorageKey, value);
+                        }
+                      }}
+                    />
+                    <div className={styles.actions}>
+                      <button onClick={checkSqlAnswer}>Check Query</button>
+                      <button
+                        onClick={() => {
+                          setUserSql("");
+                          setSqlCheckResult("");
+                          if (sqlStorageKey && typeof window !== "undefined") {
+                            window.localStorage.removeItem(sqlStorageKey);
+                          }
+                        }}
+                      >
+                        Clear Canvas
+                      </button>
+                    </div>
+                    {sqlCheckResult && <p className={styles.result}>{sqlCheckResult}</p>}
+                  </div>
                 </>
               ) : (
                 <p>No SQL questions found.</p>
