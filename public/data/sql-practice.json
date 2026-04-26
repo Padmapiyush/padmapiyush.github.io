@@ -1,0 +1,50 @@
+{
+  "easy": [
+    {
+      "id": "sql-e-1",
+      "title": "Top Customers by Orders",
+      "question": "Given a table orders(order_id, customer_id, order_date), return top 5 customers by total order count.",
+      "hint": "Use GROUP BY customer_id and ORDER BY COUNT(*) DESC.",
+      "solution": "SELECT customer_id, COUNT(*) AS total_orders FROM orders GROUP BY customer_id ORDER BY total_orders DESC LIMIT 5;"
+    },
+    {
+      "id": "sql-e-2",
+      "title": "Daily Active Users",
+      "question": "From events(user_id, event_time), find daily active users for the last 7 days.",
+      "hint": "DATE(event_time) with COUNT(DISTINCT user_id).",
+      "solution": "SELECT DATE(event_time) AS day, COUNT(DISTINCT user_id) AS dau FROM events WHERE event_time >= CURRENT_DATE - INTERVAL '7 day' GROUP BY day ORDER BY day;"
+    }
+  ],
+  "medium": [
+    {
+      "id": "sql-m-1",
+      "title": "Month-over-Month Revenue",
+      "question": "Using sales(order_date, amount), compute month-over-month growth percentage.",
+      "hint": "Aggregate by month and use LAG() window function.",
+      "solution": "WITH m AS (SELECT DATE_TRUNC('month', order_date) AS month, SUM(amount) AS revenue FROM sales GROUP BY 1) SELECT month, revenue, ROUND((revenue - LAG(revenue) OVER (ORDER BY month)) * 100.0 / NULLIF(LAG(revenue) OVER (ORDER BY month), 0), 2) AS mom_growth_pct FROM m ORDER BY month;"
+    },
+    {
+      "id": "sql-m-2",
+      "title": "Find Duplicate Transactions",
+      "question": "Identify duplicate rows in transactions(txn_id, user_id, amount, created_at) where user_id, amount, and date match.",
+      "hint": "Use ROW_NUMBER() partitioned by natural key columns.",
+      "solution": "WITH ranked AS (SELECT *, ROW_NUMBER() OVER (PARTITION BY user_id, amount, DATE(created_at) ORDER BY created_at) AS rn FROM transactions) SELECT * FROM ranked WHERE rn > 1;"
+    }
+  ],
+  "hard": [
+    {
+      "id": "sql-h-1",
+      "title": "Sessionization",
+      "question": "From clickstream(user_id, event_time), create sessions where a new session starts after 30 minutes of inactivity.",
+      "hint": "Compare current event_time with LAG(event_time), then cumulative sum of new-session flags.",
+      "solution": "WITH ordered AS (SELECT user_id, event_time, CASE WHEN event_time - LAG(event_time) OVER (PARTITION BY user_id ORDER BY event_time) > INTERVAL '30 min' OR LAG(event_time) OVER (PARTITION BY user_id ORDER BY event_time) IS NULL THEN 1 ELSE 0 END AS is_new FROM clickstream), sessions AS (SELECT user_id, event_time, SUM(is_new) OVER (PARTITION BY user_id ORDER BY event_time) AS session_id FROM ordered) SELECT * FROM sessions;"
+    },
+    {
+      "id": "sql-h-2",
+      "title": "Slowly Changing Dimension Type 2",
+      "question": "Load customer_dim SCD2 from staging_customers capturing address changes with effective dates.",
+      "hint": "Close previous active record and insert new active version.",
+      "solution": "Use MERGE in two phases: (1) update active records setting end_date and is_current = false where tracked attributes changed; (2) insert new records with start_date = CURRENT_DATE, end_date = '9999-12-31', is_current = true."
+    }
+  ]
+}
