@@ -17,20 +17,24 @@ export default function Terminal() {
       .replace(/'/g, "&#039;");
 
   const addCommand = async (command) => {
+    const normalizedCommand = command.trim().toLowerCase();
     let output;
     setLoading(true);
-    setCommands([...commands, { command, output: "Loading..." }]);
-    if (`${command}` in CONTENTS) {
-      output = await CONTENTS[`${command}`]();
-    } else if (command === "clear") {
+    setCommands([...commands, { command: normalizedCommand, output: "Loading..." }]);
+    if (`${normalizedCommand}` in CONTENTS) {
+      output = await CONTENTS[`${normalizedCommand}`]();
+    } else if (normalizedCommand === "clear") {
       setLoading(false);
       return setCommands([]);
     } else {
-      output = CONTENTS.error(escapeHTML(command));
+      output = CONTENTS.error(escapeHTML(normalizedCommand));
     }
 
     setLoading(false);
-    setCommands([...commands.slice(0, commands.length), { command, output }]);
+    setCommands([
+      ...commands.slice(0, commands.length),
+      { command: normalizedCommand, output },
+    ]);
     if (terminalRef) {
       terminalRef.current.scrollTop = terminalRef.current.scrollHeight;
     }
