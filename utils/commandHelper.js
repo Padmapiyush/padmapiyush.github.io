@@ -16,6 +16,18 @@ const COMMANDS = [
     description: "Data Projects",
   },
   {
+    command: "experience",
+    description: "Work Experience",
+  },
+  {
+    command: "certifications",
+    description: "Professional Certifications",
+  },
+  {
+    command: "post",
+    description: "Open LinkedIn Posts",
+  },
+  {
     command: "contacts",
     description: "Contact Me",
   },
@@ -140,6 +152,42 @@ export const CONTENTS = {
     <br />
     Open to collaborating on data engineering and analytics projects that require scalable architecture and measurable business outcomes.
   `,
+  experience: () => `
+  <h3>Experience</h3>
+  <div class="command">
+    <b>IDEMIA Public Security</b> — <b>Data Engineering Analyst</b><br />
+    <span class="meaning">August 2025 - Present | Noida, India</span>
+    <p class="meaning">
+      • Built production ETL/ELT pipelines with Azure Data Factory and Databricks (PySpark).<br />
+      • Provisioned secure Azure infrastructure (Storage, Key Vault, Managed Identity, networking).<br />
+      • Improved pipeline runtime and compute efficiency through optimized transformations and SQL tuning.<br />
+      • Automated deployments using Terraform + GitHub Actions CI/CD.
+    </p>
+  </div>
+  <div class="command">
+    <b>IDEMIA</b> — <b>Data Analyst</b><br />
+    <span class="meaning">June 2025 - August 2025 | Noida, India</span>
+    <p class="meaning">
+      • Delivered interactive dashboards in Power BI/Tableau for operational decision-making.<br />
+      • Performed analysis using SQL + Python to reduce manual reporting and improve turnaround.
+    </p>
+  </div>
+  <div class="command">
+    <b>IDEMIA</b> — <b>Analyst Trainee / Data Analyst Apprentice</b><br />
+    <span class="meaning">January 2024 - May 2025 | Noida, India</span>
+    <p class="meaning">
+      • Supported analytics initiatives, data preparation, reporting automation, and stakeholder insights.
+    </p>
+  </div>
+  `,
+  certifications: () => `
+  <h3>Certifications</h3>
+  <div class="command">• Google Data Analytics Professional Certificate</div>
+  <div class="command">• The Python Certification Course</div>
+  <div class="command">• Learning Ansible</div>
+  <div class="command">• Data Analytics A-Z with Python</div>
+  <div class="command">• Graphite and Grafana: Visualizing Application Performance</div>
+  `,
   education:
     () => `MCA, 2024 <br /> <a href="https://galgotiacollege.edu/welcome-to-gcet" target="_blank">Galgotias College of Engineering & Technology, Greater Noida</a> 
     <br /> BCA, 2022 <br /> <a href="https://www.iul.ac.in/" target="_blank">Integral University, Lucknow</a>.`,
@@ -156,6 +204,11 @@ export const CONTENTS = {
   projects: getProjects,
   contact: getContacts,
   contacts: getContacts,
+  certificationd: () => CONTENTS.certifications(),
+  post: () => {
+    window.open("https://www.linkedin.com/in/padmapiyush/recent-activity/posts/", "_blank");
+    return "";
+  },
   error: (input) =>
     `<div class="help-command">sh: Unknown command: ${input}</div><div class="help-command">See \`help\` for info`,
   resume: () => {

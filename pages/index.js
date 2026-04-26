@@ -1,4 +1,5 @@
 import Terminal from "../components/Terminal";
+import Playground from "../components/Playground";
 
 import styles from "../styles/Home.module.css";
 
@@ -10,6 +11,7 @@ export default function Home() {
       </h1>
       
       <Terminal />
+      <Playground />
     </div>
   );
 }

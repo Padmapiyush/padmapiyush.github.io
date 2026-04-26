@@ -1,0 +1,94 @@
+.fab {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 50;
+  border: 1px solid var(--primary);
+  background: #111320;
+  color: var(--primary);
+  border-radius: 999px;
+  padding: 10px 16px;
+  cursor: pointer;
+}
+
+.panel {
+  position: fixed;
+  right: 24px;
+  bottom: 76px;
+  width: min(480px, calc(100vw - 32px));
+  max-height: min(70vh, 720px);
+  overflow-y: auto;
+  border: 1px solid #3a3f5a;
+  border-radius: 14px;
+  background: #0f1220;
+  padding: 16px;
+  z-index: 49;
+}
+
+.header p {
+  opacity: 0.8;
+  margin-bottom: 12px;
+}
+
+.tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.tabs button,
+.actions button {
+  border: 1px solid #3a3f5a;
+  background: #171a2a;
+  color: var(--text-color);
+  border-radius: 8px;
+  padding: 8px 10px;
+  cursor: pointer;
+}
+
+.tabs .active {
+  border-color: var(--secondary);
+  color: var(--secondary);
+}
+
+.content h4 {
+  color: var(--primary);
+  margin-bottom: 8px;
+}
+
+.inline {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.inline select {
+  background: #171a2a;
+  color: var(--text-color);
+  border: 1px solid #3a3f5a;
+  border-radius: 6px;
+  padding: 4px 6px;
+}
+
+.hint {
+  margin-top: 10px;
+  color: #f8c555;
+}
+
+.solution {
+  margin-top: 10px;
+  white-space: pre-wrap;
+  background: #101626;
+  border: 1px solid #2a3150;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 13px;
+}
+
+.actions {
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
