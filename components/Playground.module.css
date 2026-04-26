@@ -3,35 +3,35 @@
   right: 24px;
   top: 24px;
   z-index: 50;
-  min-width: 210px;
-  letter-spacing: 0.55em;
-  text-indent: 0.55em;
-  font-size: 40px;
-  line-height: 1;
-  padding: 12px 18px;
-  border: 1px solid #2de490;
+  min-width: 280px;
+  letter-spacing: 0.38em;
+  text-indent: 0.38em;
+  font-size: 34px;
+  line-height: 1.1;
+  padding: 18px 28px;
+  border: none;
   color: #34f5a2;
   border-radius: 4px;
   background:
-    linear-gradient(rgba(30, 255, 145, 0.08), rgba(30, 255, 145, 0.08)),
+    linear-gradient(90deg, rgba(30, 255, 145, 0), rgba(30, 255, 145, 0.08) 22%, rgba(30, 255, 145, 0.08) 78%, rgba(30, 255, 145, 0)),
     repeating-linear-gradient(
       0deg,
-      rgba(46, 225, 143, 0.15) 0,
-      rgba(46, 225, 143, 0.15) 1px,
-      transparent 1px,
-      transparent 18px
-    ),
-    repeating-linear-gradient(
-      90deg,
       rgba(46, 225, 143, 0.12) 0,
       rgba(46, 225, 143, 0.12) 1px,
       transparent 1px,
       transparent 18px
     ),
-    #07130f;
+    repeating-linear-gradient(
+      90deg,
+      rgba(46, 225, 143, 0.09) 0,
+      rgba(46, 225, 143, 0.09) 1px,
+      transparent 1px,
+      transparent 18px
+    ),
+    linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, #07130f 15%, #07130f 85%, rgba(0, 0, 0, 0) 100%);
   box-shadow:
-    0 0 12px rgba(48, 232, 149, 0.5),
-    inset 0 0 12px rgba(48, 232, 149, 0.2);
+    0 0 24px rgba(48, 232, 149, 0.18),
+    inset 0 0 24px rgba(48, 232, 149, 0.12);
   text-shadow: 0 0 8px rgba(52, 245, 162, 0.75);
   cursor: pointer;
   transition: transform 0.15s ease, box-shadow 0.2s ease;
@@ -40,8 +40,8 @@
 .fab:hover {
   transform: translateY(-1px);
   box-shadow:
-    0 0 16px rgba(48, 232, 149, 0.75),
-    inset 0 0 14px rgba(48, 232, 149, 0.3);
+    0 0 28px rgba(48, 232, 149, 0.3),
+    inset 0 0 16px rgba(48, 232, 149, 0.24);
 }
 
 .fab:active {
@@ -65,6 +65,22 @@
 .header p {
   opacity: 0.8;
   margin-bottom: 12px;
+}
+
+.header {
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  border: none;
+  background: transparent;
+  color: var(--text-color);
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
 }
 
 .tabs {
@@ -157,10 +173,10 @@
 
 @media (max-width: 640px) {
   .fab {
-    min-width: 150px;
-    font-size: 26px;
-    letter-spacing: 0.35em;
-    text-indent: 0.35em;
+    min-width: 180px;
+    font-size: 20px;
+    letter-spacing: 0.26em;
+    text-indent: 0.26em;
     top: 12px;
     right: 12px;
   }

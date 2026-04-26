@@ -102,15 +102,20 @@ export default function Playground() {
 
   return (
     <>
-      <button className={styles.fab} onClick={() => setOpen((prev) => !prev)}>
-        {open ? "CLOSE" : "START"}
-      </button>
+      {!open && (
+        <button className={styles.fab} onClick={() => setOpen(true)}>
+          PORTFOLIO
+        </button>
+      )}
 
       {open && (
         <aside className={styles.panel}>
           <div className={styles.header}>
             <h3>Playground</h3>
             <p>Mini games for SQL + Data Engineering prep</p>
+            <button className={styles.close} onClick={() => setOpen(false)}>
+              ×
+            </button>
           </div>
 
           <div className={styles.tabs}>
