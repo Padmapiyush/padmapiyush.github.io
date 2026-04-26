@@ -46,7 +46,12 @@ export default function Terminal() {
       {commands.map(({ command, output }, index) => (
         <Command command={command} output={output} key={index} />
       ))}
-      {!loading && <Command onSubmit={(command) => addCommand(command)} />}
+      {!loading && (
+        <Command
+          onSubmit={(command) => addCommand(command)}
+          suggestions={[...Object.keys(CONTENTS), "clear"]}
+        />
+      )}
     </div>
   );
 }

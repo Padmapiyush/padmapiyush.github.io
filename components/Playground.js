@@ -104,7 +104,7 @@ export default function Playground() {
     <>
       {!open && (
         <button className={styles.fab} onClick={() => setOpen(true)}>
-          PORTFOLIO
+          portfolio:$
         </button>
       )}
 
