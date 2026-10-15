@@ -36,6 +36,14 @@ const COMMANDS = [
     description: "View My Resume",
   },
   {
+    command: "game",
+    description: "Play Interactive Games (TeamForge, etc.)",
+  },
+  {
+    command: "teamforge",
+    description: "Launch TeamForge: Build Your Team",
+  },
+  {
     command:
       // 'clear <span style="color: var(--primary)">(Ctrl+L shortcut)</span>',
       "clear",
@@ -211,6 +219,42 @@ export const CONTENTS = {
   },
   error: (input) =>
     `<div class="help-command">sh: Unknown command: ${input}</div><div class="help-command">See \`help\` for info`,
+  game: () => `
+  <h3>🎮 Interactive Games & Arcade</h3>
+  <p>Select which game you want to play:</p>
+  <br />
+  <div class="command" style="padding: 12px; border: 1px solid #8B5CF6; border-radius: 8px; background: rgba(139, 92, 246, 0.08); margin-bottom: 12px;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <b style="color: #F59E0B; font-size: 16px;">1. TeamForge: Build Your Team</b>
+      <span style="background: rgba(139, 92, 246, 0.2); color: #C4B5FD; padding: 2px 8px; border-radius: 12px; font-size: 11px; font-weight: bold;">FEATURED</span>
+    </div>
+    <p class="meaning" style="margin-top: 4px; color: #E2E8F0;">
+      Multiverse Character Auction & AI Squad Battle! Draft legends across Marvel, DC, Anime, Cricket, Football, Basketball, Movies & Gaming in a live budget auction, then evaluate the ultimate team with AI or tactical analysis.
+    </p>
+    <div style="margin-top: 10px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+      <a href="/games/teamforge" style="display: inline-block; background: #8B5CF6; color: white; padding: 6px 14px; border-radius: 6px; text-decoration: none; font-weight: bold; font-size: 12px;">▶ Click to Play TeamForge</a>
+      <span style="color: #94A3B8; font-size: 12px;">(or type: <b style="color: #22D3EE;">teamforge</b> or <b style="color: #22D3EE;">game 1</b>)</span>
+    </div>
+  </div>
+
+  <div class="command" style="padding: 12px; border: 1px solid #2A2A4E; border-radius: 8px; background: rgba(30, 41, 59, 0.2); margin-bottom: 8px;">
+    <b style="color: #22D3EE; font-size: 15px;">2. Data Engineering Quest & SQL Practice</b><br />
+    <p class="meaning" style="margin-top: 4px;">
+      Interactive scenario challenges, pipeline troubleshooting, and real-time SQL practice questions.
+    </p>
+    <div style="margin-top: 6px;">
+      <span style="color: #94A3B8; font-size: 12px;">Click the <b>portfolio:$</b> floating button in the bottom right corner to open!</span>
+    </div>
+  </div>
+  `,
+  games: () => CONTENTS.game(),
+  teamforge: () => {
+    if (typeof window !== "undefined") {
+      window.location.href = "/games/teamforge";
+    }
+    return `<div class="command">⚡ Launching <b>TeamForge: Build Your Team</b>... <a href="/games/teamforge" style="color: #22D3EE; text-decoration: underline;">Click here if not redirected automatically.</a></div>`;
+  },
+  play: () => CONTENTS.game(),
   resume: () => {
     window.open("https://drive.google.com/file/d/14bikRoLOfn6R8Vr2n1auxisV51F_8HB6/view?usp=sharing", "_blank");
     return "";

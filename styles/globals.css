@@ -1,4 +1,8 @@
-@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
   --text-color: #a9b1d6;
@@ -11,25 +15,21 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: "Fira Code", sans-serif;
 }
 
 body {
-  padding: 16px;
   background-color: var(--background-color);
   color: var(--text-color);
   font-size: 15px;
   line-height: 1.6;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
+}
+
+/* Portfolio Terminal defaults */
+.terminal-layout {
+  padding: 16px;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -56,4 +56,23 @@ h3 {
 
 a {
   color: var(--secondary);
+}
+
+/* Custom Multiverse Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0b0b14;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2a2a4e;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #8b5cf6;
 }

@@ -21,7 +21,26 @@ export default function Terminal() {
     let output;
     setLoading(true);
     setCommands([...commands, { command: normalizedCommand, output: "Loading..." }]);
-    if (`${normalizedCommand}` in CONTENTS) {
+
+    if (
+      normalizedCommand === "teamforge" ||
+      normalizedCommand === "game 1" ||
+      normalizedCommand === "game teamforge" ||
+      normalizedCommand === "play teamforge" ||
+      normalizedCommand === "1"
+    ) {
+      if (typeof window !== "undefined") {
+        window.location.href = "/games/teamforge";
+      }
+      output = `<div class="command">⚡ Launching <b>TeamForge: Build Your Team</b>... <a href="/games/teamforge" style="color: var(--secondary); text-decoration: underline;">Click here if not redirected automatically.</a></div>`;
+    } else if (
+      normalizedCommand === "game 2" ||
+      normalizedCommand === "game quest" ||
+      normalizedCommand === "play quest" ||
+      normalizedCommand === "quest"
+    ) {
+      output = `<div class="command">💡 To open <b>Data Engineering Quest & SQL Practice</b>, click the floating <b>portfolio:$</b> button in the bottom right corner of the screen!</div>`;
+    } else if (`${normalizedCommand}` in CONTENTS) {
       output = await CONTENTS[`${normalizedCommand}`]();
     } else if (normalizedCommand === "clear") {
       setLoading(false);
