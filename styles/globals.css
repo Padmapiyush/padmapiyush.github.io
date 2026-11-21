@@ -4,75 +4,98 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --text-color: #a9b1d6;
-  --primary: #bb9af7;
-  --secondary: #2ac3de;
-  --background-color: #1a1b26;
-}
+@layer base {
+  :root {
+    --background: 40 25% 94%;
+    --foreground: 30 15% 25%;
+    --card: 42 28% 96%;
+    --card-foreground: 30 15% 25%;
+    --popover: 42 28% 96%;
+    --popover-foreground: 30 15% 25%;
+    --primary: 30 20% 20%;
+    --primary-foreground: 40 25% 94%;
+    --secondary: 38 30% 88%;
+    --secondary-foreground: 30 20% 20%;
+    --muted: 38 20% 85%;
+    --muted-foreground: 30 10% 45%;
+    --accent: 25 50% 65%;
+    --accent-foreground: 30 20% 20%;
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 40 25% 94%;
+    --border: 35 18% 82%;
+    --input: 35 18% 82%;
+    --ring: 30 20% 20%;
+    --radius: 0.5rem;
+  }
 
-html,
-body {
-  padding: 0;
-  margin: 0;
-}
+  .dark {
+    --background: 210 15% 12%;
+    --foreground: 40 20% 88%;
+    --card: 210 18% 16%;
+    --card-foreground: 40 20% 88%;
+    --popover: 210 18% 16%;
+    --popover-foreground: 40 20% 88%;
+    --primary: 40 25% 90%;
+    --primary-foreground: 210 20% 15%;
+    --secondary: 210 15% 20%;
+    --secondary-foreground: 40 20% 88%;
+    --muted: 210 12% 22%;
+    --muted-foreground: 40 10% 60%;
+    --accent: 25 55% 55%;
+    --accent-foreground: 40 20% 88%;
+    --destructive: 0 65% 45%;
+    --destructive-foreground: 40 20% 88%;
+    --border: 210 12% 25%;
+    --input: 210 12% 25%;
+    --ring: 40 25% 90%;
+  }
 
-body {
-  background-color: var(--background-color);
-  color: var(--text-color);
-  font-size: 15px;
-  line-height: 1.6;
-  width: 100%;
-  min-height: 100vh;
-}
+  * {
+    @apply border-border;
+  }
 
-/* Portfolio Terminal defaults */
-.terminal-layout {
-  padding: 16px;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+  html {
+    scroll-behavior: smooth;
+  }
 
-h1 {
-  color: var(--primary);
-  font-size: 32px;
-}
-
-@media only screen and (min-width: 600px) {
-  h1 {
-    font-size: 50px;
+  body {
+    @apply bg-background text-foreground antialiased font-sans;
+    min-height: 100vh;
   }
 }
 
-h2 {
-  color: var(--primary);
+/* Paper texture matching reference site shubhamnegi.pages.dev */
+.paper-texture {
+  background-image: radial-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 0);
+  background-size: 20px 20px;
 }
 
-h3 {
-  margin-bottom: 10px;
+.dark .paper-texture {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 0);
+  background-size: 20px 20px;
 }
 
-a {
-  color: var(--secondary);
-}
-
-/* Custom Multiverse Scrollbars */
+/* Custom scrollbars matching theme */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 7px;
+  height: 7px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0b0b14;
+  background: hsl(var(--background));
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #2a2a4e;
+  background: hsl(var(--border));
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #8b5cf6;
+  background: hsl(var(--accent));
+}
+
+/* Selection highlight */
+::selection {
+  background-color: hsl(var(--accent) / 0.3);
+  color: hsl(var(--foreground));
 }

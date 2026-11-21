@@ -3,6 +3,7 @@ module.exports = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
+    "./data/**/*.{js,ts,jsx,tsx}",
     "./app/**/*.{js,ts,jsx,tsx}",
     "./lib/**/*.{js,ts,jsx,tsx}",
   ],
@@ -10,46 +11,63 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        multiverse: {
-          dark: "#0B0B14",
-          card: "#121224",
-          surface: "#1A1A32",
-          border: "#2A2A4E",
-          hover: "#252545",
+        background: "hsl(var(--background) / <alpha-value>)",
+        foreground: "hsl(var(--foreground) / <alpha-value>)",
+        card: {
+          DEFAULT: "hsl(var(--card) / <alpha-value>)",
+          foreground: "hsl(var(--card-foreground) / <alpha-value>)",
         },
-        violet: {
-          accent: "#8B5CF6",
-          light: "#A78BFA",
-          dark: "#6D28D9",
+        popover: {
+          DEFAULT: "hsl(var(--popover) / <alpha-value>)",
+          foreground: "hsl(var(--popover-foreground) / <alpha-value>)",
         },
-        cyan: {
-          accent: "#22D3EE",
-          light: "#67E8F9",
-          dark: "#0891B2",
+        primary: {
+          DEFAULT: "hsl(var(--primary) / <alpha-value>)",
+          foreground: "hsl(var(--primary-foreground) / <alpha-value>)",
         },
-        gold: {
-          accent: "#F59E0B",
-          light: "#FCD34D",
-          dark: "#B45309",
+        secondary: {
+          DEFAULT: "hsl(var(--secondary) / <alpha-value>)",
+          foreground: "hsl(var(--secondary-foreground) / <alpha-value>)",
         },
+        muted: {
+          DEFAULT: "hsl(var(--muted) / <alpha-value>)",
+          foreground: "hsl(var(--muted-foreground) / <alpha-value>)",
+        },
+        accent: {
+          DEFAULT: "hsl(var(--accent) / <alpha-value>)",
+          foreground: "hsl(var(--accent-foreground) / <alpha-value>)",
+        },
+        destructive: {
+          DEFAULT: "hsl(var(--destructive) / <alpha-value>)",
+          foreground: "hsl(var(--destructive-foreground) / <alpha-value>)",
+        },
+        border: "hsl(var(--border) / <alpha-value>)",
+        input: "hsl(var(--input) / <alpha-value>)",
+        ring: "hsl(var(--ring) / <alpha-value>)",
+      },
+      borderRadius: {
+        lg: "var(--radius, 0.5rem)",
+        md: "calc(var(--radius, 0.5rem) - 2px)",
+        sm: "calc(var(--radius, 0.5rem) - 4px)",
       },
       fontFamily: {
         mono: ["'Fira Code'", "monospace"],
         sans: ["Inter", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "sans-serif"],
       },
       animation: {
+        "ring-pulse-border": "ringPulseBorder 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite",
         "pulse-slow": "pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite",
-        "glow-violet": "glowViolet 2s ease-in-out infinite alternate",
-        "glow-cyan": "glowCyan 2s ease-in-out infinite alternate",
       },
       keyframes: {
-        glowViolet: {
-          "0%": { boxShadow: "0 0 15px rgba(139, 92, 246, 0.3)" },
-          "100%": { boxShadow: "0 0 30px rgba(139, 92, 246, 0.7)" },
-        },
-        glowCyan: {
-          "0%": { boxShadow: "0 0 15px rgba(34, 211, 238, 0.3)" },
-          "100%": { boxShadow: "0 0 30px rgba(34, 211, 238, 0.7)" },
+        ringPulseBorder: {
+          "0%, 100%": {
+            borderColor: "hsl(var(--accent))",
+            boxShadow: "0 0 0 0 rgba(212, 139, 106, 0.45)",
+          },
+          "50%": {
+            borderColor: "hsl(var(--accent) / 0.5)",
+            boxShadow: "0 0 0 5px rgba(212, 139, 106, 0.15)",
+          },
         },
       },
     },
