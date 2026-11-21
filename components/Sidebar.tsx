@@ -30,9 +30,9 @@ export function Sidebar({
 
   const navItems = [
     { id: "experience", label: "Experience", icon: Briefcase },
-    { id: "projects", label: "Projects", icon: FolderGit2 },
-    { id: "skills", label: "Skills", icon: Cpu },
-    { id: "education", label: "Education & Certs", icon: GraduationCap },
+    { id: "projects", label: "Projects & Impact", icon: FolderGit2 },
+    { id: "skills", label: "Skills & Tools", icon: Cpu },
+    { id: "education", label: "Education & Honors", icon: GraduationCap },
     { id: "arcade", label: "Interactive Arcade", icon: Gamepad2 },
   ];
 
@@ -67,7 +67,7 @@ export function Sidebar({
                 {about.preferredName}
               </div>
               <div className="text-xs text-muted-foreground font-mono">
-                data-eng:~$
+                data-analyst:~$
               </div>
             </div>
           </a>
@@ -158,12 +158,12 @@ export function Sidebar({
           variant="default"
           className="w-full justify-start bg-secondary text-secondary-foreground border-2 border-accent animate-ring-pulse-border hover:bg-accent hover:text-accent-foreground font-medium text-xs py-2 shadow-xs"
           onClick={onAskAIClick}
-          title="Chat with Padmapiyush's Data Engineering Assistant"
+          title="Chat with Padmapiyush's Data Analyst Copilot"
         >
           <Bot className="h-4 w-4 mr-2 text-accent" />
           <span className="font-semibold tracking-wide">Data Copilot (AI)</span>
           <span className="ml-auto text-[10px] bg-accent/20 text-accent font-mono px-1.5 py-0.5 rounded-full">
-            Chat
+            Ask
           </span>
         </Button>
 

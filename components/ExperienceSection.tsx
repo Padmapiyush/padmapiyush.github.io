@@ -1,6 +1,6 @@
 import * as React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Briefcase, ChevronDown, ChevronUp, MapPin, Calendar } from "lucide-react";
+import { Briefcase, ChevronDown, ChevronUp, MapPin, Calendar, TrendingUp } from "lucide-react";
 import { Card } from "./ui/Card";
 import { Badge } from "./ui/Badge";
 import { Button } from "./ui/Button";
@@ -15,12 +15,15 @@ export function ExperienceSection() {
 
   return (
     <section id="experience" className="mb-16 scroll-mt-20">
-      <div className="flex items-center gap-2 mb-6">
+      <div className="flex items-center gap-2 mb-2">
         <Briefcase className="h-6 w-6 text-accent" />
         <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground">
           Professional Experience
         </h2>
       </div>
+      <p className="text-sm text-muted-foreground mb-6">
+        Hands-on track record in automated reporting, executive dashboard engineering, A/B testing, and enterprise ETL pipelines.
+      </p>
 
       <div className="space-y-4">
         {initialItems.map((exp, index) => (
@@ -56,7 +59,7 @@ export function ExperienceSection() {
           >
             {expanded ? (
               <>
-                <span>Show Less</span>
+                <span>Show Less Experience</span>
                 <ChevronUp className="h-4 w-4" />
               </>
             ) : (
@@ -76,14 +79,14 @@ function ExperienceCard({ experience }: { experience: Experience }) {
   return (
     <Card className="p-6 paper-texture hover:shadow-lg transition-all duration-200 border-border bg-card">
       {/* Header: Company & Role */}
-      <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2 mb-3">
+      <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2 mb-2">
         <div>
           <div className="flex items-center gap-2 flex-wrap">
             <h3 className="text-lg sm:text-xl font-bold text-foreground">
               {experience.company}
             </h3>
             {experience.isCurrent && (
-              <Badge variant="secondary" className="bg-accent/15 text-accent text-[11px] font-mono border-accent/30">
+              <Badge variant="secondary" className="bg-accent/15 text-accent text-[11px] font-mono border-accent/30 font-semibold">
                 Current Role
               </Badge>
             )}
@@ -96,7 +99,7 @@ function ExperienceCard({ experience }: { experience: Experience }) {
         <div className="flex flex-col sm:items-end text-xs font-mono text-muted-foreground shrink-0">
           <div className="flex items-center gap-1.5">
             <Calendar className="h-3.5 w-3.5 text-accent" />
-            <span>{experience.duration}</span>
+            <span>{experience.duration} {experience.periodLabel ? `(${experience.periodLabel})` : ""}</span>
           </div>
           <div className="flex items-center gap-1 mt-0.5">
             <MapPin className="h-3.5 w-3.5 text-muted-foreground" />
@@ -104,6 +107,15 @@ function ExperienceCard({ experience }: { experience: Experience }) {
           </div>
         </div>
       </div>
+
+      {/* Impact Metric Banner */}
+      {experience.impactMetric && (
+        <div className="mb-3.5 px-3 py-1.5 rounded-md bg-secondary/50 border border-border/70 text-xs font-mono text-foreground flex items-center gap-1.5">
+          <TrendingUp className="h-3.5 w-3.5 text-accent shrink-0" />
+          <span className="font-semibold text-accent">Key Impact:</span>
+          <span className="text-muted-foreground">{experience.impactMetric}</span>
+        </div>
+      )}
 
       {/* Responsibilities */}
       <ul className="space-y-2 mb-4">
@@ -117,7 +129,7 @@ function ExperienceCard({ experience }: { experience: Experience }) {
         ))}
       </ul>
 
-      {/* Tech Pills */}
+      {/* Tech Stack Pills */}
       <div className="flex flex-wrap gap-1.5 pt-1">
         {experience.skills.map((skill) => (
           <Badge

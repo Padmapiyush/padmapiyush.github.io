@@ -23,3 +23,4 @@ export function Badge({
 
   return <div className={combinedClassName} {...props} />;
 }
+

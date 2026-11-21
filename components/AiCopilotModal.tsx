@@ -8,6 +8,8 @@ import {
   ArrowRight,
   Terminal,
   RefreshCw,
+  Award,
+  TrendingUp,
 } from "lucide-react";
 import { Button } from "./ui/Button";
 import { Badge } from "./ui/Badge";
@@ -28,7 +30,7 @@ export function AiCopilotModal({ isOpen, onClose }: AiCopilotModalProps) {
     {
       role: "assistant",
       content:
-        "Hi! I'm **Data Copilot**, Padmapiyush's portfolio assistant. Ask me anything about his data engineering pipelines, Azure/Databricks experience, lakehouse architecture, or background!",
+        "Hi! I'm **Data Copilot**, Padmapiyush's portfolio assistant. Ask me anything about his analytics impact, 95% dashboard automation, 10M+ ETL pipelines, or why he's the ideal Data Analyst for your team!",
     },
   ]);
   const [input, setInput] = React.useState("");
@@ -36,10 +38,10 @@ export function AiCopilotModal({ isOpen, onClose }: AiCopilotModalProps) {
   const messagesEndRef = React.useRef<HTMLDivElement>(null);
 
   const suggestedQuestions = [
-    "What is Padmapiyush's current role and stack?",
-    "Tell me about the Azure Medallion Lakehouse project.",
-    "What are his core big data & streaming skills?",
-    "How can I contact or hire Padmapiyush?",
+    "Why is Padmapiyush the best analyst for our team?",
+    "Tell me about his 95% reporting automation & 20+ dashboards.",
+    "What business impact did he deliver via A/B testing?",
+    "Is he open to international relocation?",
   ];
 
   React.useEffect(() => {
@@ -65,12 +67,11 @@ export function AiCopilotModal({ isOpen, onClose }: AiCopilotModalProps) {
     setInput("");
     setIsTyping(true);
 
-    // Generate intelligent response grounded in Padmapiyush's real data
     setTimeout(() => {
       const reply = generateCopilotResponse(query);
       setMessages([...newMessages, { role: "assistant", content: reply }]);
       setIsTyping(false);
-    }, 450);
+    }, 400);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -100,11 +101,11 @@ export function AiCopilotModal({ isOpen, onClose }: AiCopilotModalProps) {
                   variant="secondary"
                   className="bg-accent/15 text-accent font-mono text-[10px] px-1.5 py-0"
                 >
-                  LIVE ASSISTANT
+                  TOP ANALYST ASSISTANT
                 </Badge>
               </div>
               <p className="text-xs text-muted-foreground font-mono">
-                Ask anything about Padmapiyush's data engineering career
+                Ask anything about Padmapiyush's analytics background & impact
               </p>
             </div>
           </div>
@@ -165,7 +166,7 @@ export function AiCopilotModal({ isOpen, onClose }: AiCopilotModalProps) {
               </div>
               <div className="p-3 rounded-lg bg-secondary/50 border border-border text-xs font-mono text-muted-foreground flex items-center gap-1.5">
                 <RefreshCw className="h-3 w-3 animate-spin text-accent" />
-                <span>Thinking & querying knowledge base...</span>
+                <span>Querying performance metrics & achievements...</span>
               </div>
             </div>
           )}
@@ -195,7 +196,7 @@ export function AiCopilotModal({ isOpen, onClose }: AiCopilotModalProps) {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
-            placeholder="Ask about Azure pipelines, PySpark, experience at IDEMIA..."
+            placeholder="Ask about Power BI, 95% automation, A/B testing, IDEMIA awards..."
             className="flex-1 bg-secondary/60 border border-border rounded-md px-3.5 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent/50"
           />
           <Button
@@ -218,88 +219,84 @@ function generateCopilotResponse(query: string): string {
   const q = query.toLowerCase();
   const data = PORTFOLIO_DATA;
 
-  if (q.includes("azure") || q.includes("lakehouse") || q.includes("medallion")) {
+  if (q.includes("best") || q.includes("why hire") || q.includes("stand out") || q.includes("sets apart")) {
     return (
-      "Padmapiyush architected the **Azure Medallion Lakehouse Pipeline**, a production-style lakehouse on Microsoft Azure:\n\n" +
-      "- **Bronze Layer:** Raw data ingestion from varied endpoints via **Azure Data Factory (ADF)** with parameterized datasets.\n" +
-      "- **Silver Layer:** Cleansed and standardized tables modeled in **Azure Databricks (PySpark)** with automated schema validation.\n" +
-      "- **Gold Layer:** Optimized dimensional models stored as **Delta Lake** tables for ACID reliability and high-speed analytical queries.\n" +
-      "- **DevOps & Security:** Fully provisioned with **Terraform**, credential isolation via **Azure Key Vault**, and automated CI/CD.\n\n" +
-      "You can inspect the full source code on [GitHub](" + data.projects[0].github + ")."
+      "What makes Padmapiyush the **best Data Analyst you can hire** is his rare **full-cycle ownership**:\n\n" +
+      "- **Not Just a Dashboard Builder:** Most analysts merely flag anomalies on a chart; Padmapiyush understands the entire data pipeline and has built ETL/ELT pipelines processing **10M+ daily records** with Azure Data Factory, Databricks (PySpark), and SQL Server. He traces data quality bugs directly to their root source.\n" +
+      "- **Measurable Business ROI:** Led A/B testing initiatives that **slashed vendor costs by 12%** and accelerated delivery timelines by **8%**.\n" +
+      "- **High-Velocity Automation:** Automated reporting workflows to **cut manual effort by ~95%** at IDEMIA Public Security.\n" +
+      "- **Proven Leadership & Recognition:** Recipient of both the **Spot Award** and **Shining Star Award** at IDEMIA, Google Certified, and former Data Science Lead at Team CodeOn."
     );
   }
 
-  if (q.includes("streaming") || q.includes("kafka") || q.includes("real-time") || q.includes("spark")) {
+  if (q.includes("automation") || q.includes("95%") || q.includes("dashboard") || q.includes("20+")) {
     return (
-      "In his **Real-Time Orders Streaming Platform**, Padmapiyush engineered an end-to-end streaming architecture:\n\n" +
-      "- **Ingestion:** High-throughput streaming event ingestion using **Apache Kafka** partitioned topic clusters.\n" +
-      "- **Processing:** Low-latency sliding-window aggregations implemented via **Spark Structured Streaming** with watermarking.\n" +
-      "- **Orchestration & Transformation:** Managed through **Apache Airflow** DAGs and **dbt** (data build tool) running in Docker containers.\n\n" +
-      "Check out the project details on [GitHub](" + data.projects[1].github + ")."
+      "At **IDEMIA Public Security**, Padmapiyush delivered massive efficiency gains:\n\n" +
+      "- **Published 20+ Enterprise Power BI Dashboards:** Unifying fragmented data streams into executive KPI portals with DAX modeling.\n" +
+      "- **95% Manual Effort Reduction:** Replaced error-prone manual spreadsheets with automated SQL data refresh jobs and automated Python reporting routines.\n" +
+      "- **Centralized KPI Models:** Integrated heterogeneous transactional databases into cohesive dimensional reporting models used across multi-national projects."
     );
   }
 
-  if (q.includes("current") || q.includes("role") || q.includes("job") || q.includes("idemia") || q.includes("work")) {
+  if (q.includes("a/b") || q.includes("cost") || q.includes("vendor") || q.includes("roi")) {
     return (
-      "Padmapiyush currently works as a **Data Engineering Analyst at IDEMIA Public Security** in Noida, India (since August 2025).\n\n" +
-      "His core responsibilities include:\n" +
-      "- Building robust ETL/ELT pipelines with **Azure Data Factory** and **Databricks (PySpark)**.\n" +
-      "- Provisioning secure enterprise cloud infrastructure (**ADLS Gen2**, **Key Vault**, **Managed Identity**).\n" +
-      "- Performance tuning SQL queries and PySpark partitions to slash compute costs and pipeline runtimes.\n" +
-      "- Automating cloud deployments using **Terraform** and **GitHub Actions** CI/CD."
+      "During his tenure as Data Analyst at IDEMIA, Padmapiyush spearheaded rigorous **statistical A/B testing**:\n\n" +
+      "- **12% Cost Reduction:** Evaluated vendor performance datasets and pricing models, guiding procurement teams to optimal partner selection.\n" +
+      "- **8% Faster Delivery Timelines:** Identified bottleneck trends in supplier fulfillment SLAs.\n" +
+      "- **7+ Deployed Dashboards:** Cut recurring manual reporting efforts by **40%**."
     );
   }
 
-  if (q.includes("skills") || q.includes("stack") || q.includes("technology") || q.includes("tech")) {
+  if (q.includes("relocation") || q.includes("international") || q.includes("visa") || q.includes("remote") || q.includes("relocate")) {
     return (
-      "Padmapiyush's technical stack spans modern data engineering and analytics:\n\n" +
-      "- **Languages:** SQL, Python, PySpark, T-SQL, Bash, TypeScript\n" +
-      "- **Data Engineering:** Medallion Lakehouse (Bronze-Silver-Gold), Delta Lake, ETL/ELT, Data Modeling\n" +
-      "- **Cloud & Big Data:** Azure Data Factory, Databricks, ADLS Gen2, Apache Kafka, Spark\n" +
-      "- **Orchestration & DevOps:** Airflow, dbt, Terraform (IaC), GitHub Actions, Docker\n" +
-      "- **Analytics & BI:** Power BI, DAX, Tableau, Advanced Excel, A/B Testing"
+      "Yes! Padmapiyush is **actively open to international relocation** as well as top-tier remote roles.\n\n" +
+      "He holds a **Master of Computer Applications (MCA)**, is **Google Certified**, and brings enterprise-tested experience from a global organization (IDEMIA Public Security).\n\n" +
+      "You can reach out directly via email at [thepadmapiyush@gmail.com](mailto:thepadmapiyush@gmail.com) or call [+91 9532683568](tel:+919532683568)."
     );
   }
 
-  if (q.includes("contact") || q.includes("hire") || q.includes("email") || q.includes("reach") || q.includes("phone")) {
+  if (q.includes("award") || q.includes("honor") || q.includes("spot") || q.includes("shining star")) {
     return (
-      "You can connect directly with Padmapiyush via:\n\n" +
+      "Padmapiyush has earned two major corporate excellence honors at IDEMIA:\n\n" +
+      "- **Spot Award (IDEMIA Public Security):** For rapid turnaround on mission-critical stakeholder dashboards and delivering 95% reporting automation.\n" +
+      "- **Shining Star Award (IDEMIA):** For technical excellence in enterprise data modeling, SQL optimization, and business impact through analytics."
+    );
+  }
+
+  if (q.includes("skills") || q.includes("stack") || q.includes("tool") || q.includes("power bi") || q.includes("sql")) {
+    return (
+      "Padmapiyush's top competencies include:\n\n" +
+      "- **BI & Visualization:** Microsoft Power BI, DAX Measures, Tableau, Advanced Excel, Executive Storytelling.\n" +
+      "- **Querying & Scripting:** Advanced SQL (Level Up Certified), Python (Pandas/NumPy), PySpark, MySQL, T-SQL.\n" +
+      "- **Pipelines & Cloud:** Azure Data Factory (ADF), Azure Databricks, SQL Server, Delta Lake, 10M+ Daily Records ETL/ELT.\n" +
+      "- **Methodologies:** Statistical A/B Testing, Business Process Modeling, Root-Cause Analysis, KPI Architecture."
+    );
+  }
+
+  if (q.includes("contact") || q.includes("hire") || q.includes("email") || q.includes("phone")) {
+    return (
+      "Connect directly with Padmapiyush:\n\n" +
       "- **Email:** [thepadmapiyush@gmail.com](mailto:thepadmapiyush@gmail.com)\n" +
+      "- **Phone:** [+91 9532683568](tel:+919532683568)\n" +
       "- **LinkedIn:** [linkedin.com/in/padmapiyush](https://www.linkedin.com/in/padmapiyush/)\n" +
       "- **GitHub:** [github.com/padmapiyush](https://github.com/padmapiyush)\n" +
-      "- **Phone:** +91 9532683568\n" +
       "- **Resume:** [View / Download Resume](" + data.contact.resume + ")\n\n" +
-      "He is actively open for data engineering collaborations and strategic engineering opportunities!"
+      "He is ready to own analytics challenges from raw data to executive insight!"
     );
   }
 
-  if (q.includes("education") || q.includes("college") || q.includes("degree") || q.includes("certif")) {
-    return (
-      "Padmapiyush holds an **MCA (Master of Computer Applications, 2024)** from Galgotias College of Engineering & Technology, and a **BCA (2022)** from Integral University.\n\n" +
-      "His professional certifications include:\n" +
-      "- **Google Data Analytics Professional Certificate**\n" +
-      "- **The Python Certification Course** (Edureka)\n" +
-      "- **Learning Ansible** (Systems Orchestration)\n" +
-      "- **Data Analytics A-Z with Python**\n" +
-      "- **Graphite and Grafana Application Performance Visualization**"
-    );
-  }
-
-  // Default fallback response
   return (
-    `Padmapiyush is a **Data Engineering Analyst** at IDEMIA Public Security specializing in modern lakehouse architectures (Azure, Databricks, Delta Lake), real-time streaming (Kafka, Spark), and automation with Terraform & CI/CD.\n\n` +
-    `Feel free to ask about his specific **projects**, **skills**, **experience**, or [download his resume](${data.contact.resume})!`
+    `Padmapiyush Pathak is a **Google Certified Data Analyst** at IDEMIA Public Security who brings a rare blend of **95% dashboard automation**, **A/B testing cost reduction (12%)**, and **10M+ records ETL engineering**.\n\n` +
+    `Ask about his **20+ Power BI dashboards**, **A/B testing impact**, **Azure Databricks experience**, or [download his resume](${data.contact.resume})!`
   );
 }
 
 function formatMarkdownToHtml(text: string): string {
-  // Simple markdown to HTML parser for bold, italics, bullets, and links
   let html = text
     .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
     .replace(/\*(.*?)\*/g, "<em>$1</em>")
     .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="text-accent underline font-semibold hover:opacity-80">$1</a>');
 
-  // Convert bullet lists
   const lines = html.split("\n");
   const processedLines: string[] = [];
   let inList = false;

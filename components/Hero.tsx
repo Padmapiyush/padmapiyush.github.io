@@ -6,13 +6,22 @@ import {
   Building2,
   Sparkles,
   ArrowDown,
+  Globe,
+  Award,
+  TrendingDown,
+  Clock,
+  Layers,
+  Database,
+  CheckCircle,
 } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "./Icons";
 import { Button } from "./ui/Button";
+import { Badge } from "./ui/Badge";
+import { Card } from "./ui/Card";
 import { PORTFOLIO_DATA } from "../data/portfolioData";
 
 export function Hero() {
-  const { about, contact } = PORTFOLIO_DATA;
+  const { about, contact, metrics, awards } = PORTFOLIO_DATA;
 
   const scrollToProjects = () => {
     const el = document.getElementById("projects");
@@ -23,17 +32,29 @@ export function Hero() {
 
   return (
     <section className="mb-16 pt-2">
-      {/* Status Badge */}
-      <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary text-secondary-foreground text-xs font-mono mb-4 border border-border">
-        <span className="h-2 w-2 rounded-full bg-accent animate-pulse" />
-        <span>Open for Data Engineering & Cloud Collaboration</span>
+      {/* Top Badges: Hiring & Relocation Signals */}
+      <div className="flex flex-wrap items-center gap-2 mb-4">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary text-secondary-foreground text-xs font-mono border border-border">
+          <span className="h-2 w-2 rounded-full bg-accent animate-pulse" />
+          <span className="font-semibold text-accent">Google Certified Data Analyst</span>
+        </div>
+
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent/15 text-accent text-xs font-mono border border-accent/30 font-medium">
+          <Globe className="h-3.5 w-3.5" />
+          <span>Open to International Relocation</span>
+        </div>
+
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary text-secondary-foreground text-xs font-mono border border-border">
+          <Award className="h-3.5 w-3.5 text-accent" />
+          <span>Spot & Shining Star Awardee</span>
+        </div>
       </div>
 
       {/* Greeting & Name */}
       <h1 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight mb-1">
         Hi 👋, I'm
       </h1>
-      <h2 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-foreground tracking-tight leading-tight mb-4">
+      <h2 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-foreground tracking-tight leading-tight mb-3">
         {about.name}
       </h2>
 
@@ -41,22 +62,28 @@ export function Hero() {
       <div className="flex flex-wrap items-center gap-3 text-sm text-muted-foreground mb-4">
         <div className="flex items-center gap-1.5 font-medium text-foreground">
           <Building2 className="h-4 w-4 text-accent" />
-          <span>{about.role} at <b className="text-foreground">{about.currentCompany}</b></span>
+          <span>
+            <b>Data Analyst</b> at <b className="text-foreground">{about.currentCompany}</b>
+          </span>
         </div>
         <span className="text-border">•</span>
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-1 font-mono text-xs sm:text-sm">
           <MapPin className="h-3.5 w-3.5 text-accent" />
           <span>{about.location}</span>
         </div>
       </div>
 
-      {/* Elevator Pitch */}
-      <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-6 font-normal">
-        {about.elevator}
+      {/* The Unicorn Analyst Pitch */}
+      <p className="text-base sm:text-lg text-foreground font-medium leading-relaxed mb-3">
+        I'm a Data Analyst with two years of experience turning raw, messy data into dashboards, insights, and decisions businesses actually use.
       </p>
 
-      {/* Call to Actions & Social Row */}
-      <div className="flex flex-wrap items-center gap-3 mb-12">
+      <p className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-6 font-normal">
+        <strong className="text-foreground font-semibold">What sets me apart:</strong> I don't just analyze data — I understand how it's built from the ground up. Having engineered ETL/ELT pipelines processing <span className="text-accent font-semibold">10M+ records daily</span> across Azure Data Factory, Databricks (PySpark), and SQL Server, I trace data quality issues directly back to their origin rather than just flagging anomalies on a chart.
+      </p>
+
+      {/* CTA Buttons & Social Row */}
+      <div className="flex flex-wrap items-center gap-3 mb-10">
         <a
           href={contact.resume}
           target="_blank"
@@ -64,7 +91,7 @@ export function Hero() {
         >
           <Button variant="default" size="default" className="gap-2 font-medium">
             <FileText className="h-4 w-4" />
-            Resume
+            <span>Download Resume</span>
           </Button>
         </a>
 
@@ -74,7 +101,7 @@ export function Hero() {
           onClick={scrollToProjects}
           className="gap-2 font-medium"
         >
-          <span>Explore Projects</span>
+          <span>Explore Impact & Dashboards</span>
           <ArrowDown className="h-4 w-4 text-accent" />
         </Button>
 
@@ -115,12 +142,32 @@ export function Hero() {
         </div>
       </div>
 
-      {/* About Me Section */}
+      {/* Quantifiable Impact Metrics Grid (Proves why he's the best analyst!) */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-12">
+        {metrics.map((metric, idx) => (
+          <Card
+            key={idx}
+            className="p-4 paper-texture border-border bg-card hover:border-accent/60 transition-all duration-200"
+          >
+            <div className="text-2xl sm:text-3xl font-extrabold text-accent font-mono tracking-tight leading-none mb-1">
+              {metric.value}
+            </div>
+            <div className="text-xs sm:text-sm font-bold text-foreground mb-1 leading-snug">
+              {metric.label}
+            </div>
+            <p className="text-[11px] text-muted-foreground leading-relaxed line-clamp-2">
+              {metric.description}
+            </p>
+          </Card>
+        ))}
+      </div>
+
+      {/* About Me Section & Awards */}
       <div className="border-t border-border pt-8">
         <div className="flex items-center gap-2 mb-4">
           <Sparkles className="h-5 w-5 text-accent" />
           <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground">
-            About Me
+            About Me & Approach
           </h3>
         </div>
 
@@ -130,31 +177,33 @@ export function Hero() {
           ))}
         </div>
 
-        {/* Focus Areas Quick Highlights */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-6">
-          <div className="p-3.5 rounded-lg border border-border bg-card paper-texture">
-            <div className="text-xs font-mono uppercase text-accent font-semibold mb-1">
-              Architecture
-            </div>
-            <div className="text-sm font-medium text-foreground">
-              Azure Medallion Lakehouse & Delta Lake ACID Storage
-            </div>
+        {/* Honors & Awards Cards */}
+        <div className="mt-8">
+          <div className="text-xs font-mono uppercase tracking-wider text-accent font-semibold mb-3 flex items-center gap-1.5">
+            <Award className="h-4 w-4" />
+            <span>Honors & Recognition</span>
           </div>
-          <div className="p-3.5 rounded-lg border border-border bg-card paper-texture">
-            <div className="text-xs font-mono uppercase text-accent font-semibold mb-1">
-              Pipelines
-            </div>
-            <div className="text-sm font-medium text-foreground">
-              Distributed PySpark Batch & Kafka Structured Streaming
-            </div>
-          </div>
-          <div className="p-3.5 rounded-lg border border-border bg-card paper-texture">
-            <div className="text-xs font-mono uppercase text-accent font-semibold mb-1">
-              DevOps & IaC
-            </div>
-            <div className="text-sm font-medium text-foreground">
-              Terraform Cloud Provisioning & GitHub Actions CI/CD
-            </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {awards.map((award, idx) => (
+              <div
+                key={idx}
+                className="p-4 rounded-lg border border-border bg-secondary/40 paper-texture"
+              >
+                <div className="flex items-center justify-between mb-1">
+                  <h4 className="text-sm font-bold text-foreground flex items-center gap-1.5">
+                    <Award className="h-4 w-4 text-accent" />
+                    <span>{award.title}</span>
+                  </h4>
+                  <span className="text-[10px] font-mono text-accent bg-accent/15 px-2 py-0.5 rounded-full">
+                    {award.organization}
+                  </span>
+                </div>
+                <p className="text-xs text-muted-foreground leading-relaxed mt-1">
+                  {award.description}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </div>
