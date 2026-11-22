@@ -8,6 +8,8 @@ import {
   ArrowDown,
   Globe,
   Award,
+  Download,
+  ExternalLink,
 } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "./Icons";
 import { Button } from "./ui/Button";
@@ -77,18 +79,29 @@ export function Hero() {
         <strong className="text-foreground font-semibold">What sets me apart:</strong> I don't just analyze data — I understand how it's built from the ground up. Having engineered ETL/ELT pipelines processing <span className="text-accent font-semibold">10M+ records daily</span> across Azure Data Factory, Databricks (PySpark), and SQL Server, I trace data quality issues directly back to their origin rather than just flagging anomalies on a chart.
       </p>
 
-      {/* CTA Buttons & Social Row */}
+      {/* CTA Buttons: 1-Click Native PDF Download + Drive link + Social Row */}
       <div className="flex flex-wrap items-center gap-3 mb-10">
-        <a
-          href={contact.resume}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Button variant="default" size="default" className="gap-2 font-medium">
-            <FileText className="h-4 w-4" />
-            <span>Download Resume</span>
-          </Button>
-        </a>
+        <div className="inline-flex items-center rounded-md border border-border bg-card p-0.5 shadow-sm">
+          <a
+            href="/Padmapiyush_Pathak_Resume.pdf"
+            download="Padmapiyush_Pathak_Data_Analyst_Resume.pdf"
+            className="inline-flex items-center gap-1.5 px-3.5 py-2 text-sm font-semibold text-primary-foreground bg-primary rounded-md hover:bg-primary/90 transition-colors"
+            title="Download resume PDF directly to your device"
+          >
+            <Download className="h-4 w-4 text-accent" />
+            <span>Download Resume PDF</span>
+          </a>
+          <a
+            href={contact.resume}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-2.5 py-2 text-xs font-mono text-muted-foreground hover:text-foreground hover:bg-muted rounded-md transition-colors flex items-center gap-1"
+            title="Open in Google Drive"
+          >
+            <span>Drive</span>
+            <ExternalLink className="h-3 w-3" />
+          </a>
+        </div>
 
         <Button
           variant="secondary"
@@ -160,12 +173,12 @@ export function Hero() {
       {/* Interactive Automation Impact Calculator (Live Simulation Widget) */}
       <ImpactCalculator />
 
-      {/* About Me Section & Awards */}
+      {/* About Me Section */}
       <div className="border-t border-border pt-8">
         <div className="flex items-center gap-2 mb-4">
           <Sparkles className="h-5 w-5 text-accent" />
           <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground">
-            About Me & Approach
+            About Me &amp; Approach
           </h3>
         </div>
 
@@ -173,36 +186,6 @@ export function Hero() {
           {about.bio.map((paragraph, idx) => (
             <p key={idx}>{paragraph}</p>
           ))}
-        </div>
-
-        {/* Honors & Awards Cards */}
-        <div className="mt-8">
-          <div className="text-xs font-mono uppercase tracking-wider text-accent font-semibold mb-3 flex items-center gap-1.5">
-            <Award className="h-4 w-4" />
-            <span>Honors & Recognition</span>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            {awards.map((award, idx) => (
-              <div
-                key={idx}
-                className="p-4 rounded-lg border border-border bg-secondary/40 paper-texture"
-              >
-                <div className="flex items-center justify-between mb-1">
-                  <h4 className="text-sm font-bold text-foreground flex items-center gap-1.5">
-                    <Award className="h-4 w-4 text-accent" />
-                    <span>{award.title}</span>
-                  </h4>
-                  <span className="text-[10px] font-mono text-accent bg-accent/15 px-2 py-0.5 rounded-full">
-                    {award.organization}
-                  </span>
-                </div>
-                <p className="text-xs text-muted-foreground leading-relaxed mt-1">
-                  {award.description}
-                </p>
-              </div>
-            ))}
-          </div>
         </div>
       </div>
     </section>

@@ -8,8 +8,9 @@ import {
   Bot,
   Menu,
   X,
-  FileText,
+  Download,
   Mail,
+  Trophy,
 } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "./Icons";
 import { Button } from "./ui/Button";
@@ -33,6 +34,7 @@ export function MobileNavbar({
   const navItems = [
     { id: "experience", label: "Experience", icon: Briefcase },
     { id: "projects", label: "Projects", icon: FolderGit2 },
+    { id: "awards", label: "Honors & Proof", icon: Trophy },
     { id: "skills", label: "Skills", icon: Cpu },
     { id: "education", label: "Education & Certs", icon: GraduationCap },
     { id: "arcade", label: "Arcade", icon: Gamepad2 },
@@ -101,12 +103,12 @@ export function MobileNavbar({
             variant="outline"
             size="icon"
             className="h-8 w-8"
-            onClick={() => handleNavClick("skills")}
-            title="Skills"
+            onClick={() => handleNavClick("awards")}
+            title="Honors"
           >
-            <Cpu
+            <Trophy
               className={`h-4 w-4 ${
-                activeSection === "skills" ? "text-accent" : ""
+                activeSection === "awards" ? "text-accent" : ""
               }`}
             />
           </Button>
@@ -176,14 +178,13 @@ export function MobileNavbar({
               </a>
             </div>
             <a
-              href={contact.resume}
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/Padmapiyush_Pathak_Resume.pdf"
+              download="Padmapiyush_Pathak_Data_Analyst_Resume.pdf"
               className="inline-block"
             >
-              <Button variant="secondary" size="sm" className="text-xs gap-1.5">
-                <FileText className="h-3.5 w-3.5" />
-                Resume
+              <Button variant="secondary" size="sm" className="text-xs gap-1.5 font-semibold">
+                <Download className="h-3.5 w-3.5 text-accent" />
+                Resume PDF
               </Button>
             </a>
           </div>

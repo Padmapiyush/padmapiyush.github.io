@@ -3,7 +3,8 @@ import {
   Mail,
   Copy,
   Check,
-  FileText,
+  Download,
+  ExternalLink,
   Phone,
   Share2,
   Calendar,
@@ -22,7 +23,7 @@ export function ContactSection() {
     const dayPrompts = [
       {
         day: "Sunday",
-        text: "Sunday strategy sessions? I'm in. Let's discuss your next data architecture or lakehouse initiative.",
+        text: "Sunday strategy sessions? I'm in. Let's discuss your next data architecture or analytics initiative.",
       },
       {
         day: "Monday",
@@ -30,23 +31,23 @@ export function ContactSection() {
       },
       {
         day: "Tuesday",
-        text: "Got a challenging data pipeline or cloud migration? I'm energized and ready to help you solve it today.",
+        text: "Got a challenging reporting bottleneck or A/B testing project? I'm energized and ready to help you solve it today.",
       },
       {
         day: "Wednesday",
-        text: "Mid-week momentum! Now is the perfect time to reach out and kick off high-impact data engineering work.",
+        text: "Mid-week momentum! Now is the perfect time to reach out and kick off high-impact data analytics work.",
       },
       {
         day: "Thursday",
-        text: "The week isn't over yet! Let's connect and brainstorm how we can optimize your cloud data stack.",
+        text: "The week isn't over yet! Let's connect and brainstorm how we can optimize your dashboard stack.",
       },
       {
         day: "Friday",
-        text: "Finish the week strong! Drop me a message and let's plan a high-impact engineering collaboration.",
+        text: "Finish the week strong! Drop me a message and let's plan a high-impact analytics collaboration.",
       },
       {
         day: "Saturday",
-        text: "Great ideas don't take days off. If inspiration strikes for an analytics or data project, my inbox is open!",
+        text: "Great ideas don't take days off. If inspiration strikes for a data or BI project, my inbox is open!",
       },
     ];
 
@@ -84,12 +85,12 @@ export function ContactSection() {
           </p>
         </div>
 
-        {/* CTA Buttons */}
+        {/* CTA Buttons: 1-Click Native PDF Download + Email Copy */}
         <div className="flex flex-col sm:flex-row gap-3 justify-center items-center mb-8">
           <Button
             variant="default"
             size="lg"
-            className="gap-2 w-56 font-medium"
+            className="gap-2 w-56 font-medium cursor-pointer"
             onClick={handleCopyEmail}
           >
             {copied ? (
@@ -105,17 +106,28 @@ export function ContactSection() {
             )}
           </Button>
 
-          <a
-            href={contact.resume}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full sm:w-auto"
-          >
-            <Button variant="outline" size="lg" className="gap-2 w-56 font-medium">
-              <FileText className="h-4 w-4 text-accent" />
-              <span>Download Resume</span>
-            </Button>
-          </a>
+          <div className="flex items-center gap-1">
+            <a
+              href="/Padmapiyush_Pathak_Resume.pdf"
+              download="Padmapiyush_Pathak_Data_Analyst_Resume.pdf"
+              className="w-full sm:w-auto"
+            >
+              <Button variant="outline" size="lg" className="gap-2 w-56 font-medium">
+                <Download className="h-4 w-4 text-accent" />
+                <span>Download Resume (PDF)</span>
+              </Button>
+            </a>
+            <a
+              href={contact.resume}
+              target="_blank"
+              rel="noopener noreferrer"
+              title="View on Google Drive"
+            >
+              <Button variant="ghost" size="icon" className="h-11 w-11 text-muted-foreground hover:text-foreground">
+                <ExternalLink className="h-4 w-4" />
+              </Button>
+            </a>
+          </div>
         </div>
 
         {/* Social and Communication Icons */}
@@ -174,7 +186,7 @@ export function ContactSection() {
         </div>
 
         <div className="mt-4 text-xs font-mono text-muted-foreground">
-          thepadmapiyush@gmail.com • +91 9532683568
+          thepadmapiyush@gmail.com • +91 9532683568 • Open to International Relocation
         </div>
       </Card>
     </section>

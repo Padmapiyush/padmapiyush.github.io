@@ -6,9 +6,10 @@ import {
   GraduationCap,
   Gamepad2,
   Mail,
-  FileText,
+  Download,
   Bot,
   Share2,
+  Trophy,
 } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "./Icons";
 import { Button } from "./ui/Button";
@@ -31,8 +32,9 @@ export function Sidebar({
   const navItems = [
     { id: "experience", label: "Experience", icon: Briefcase },
     { id: "projects", label: "Projects & Impact", icon: FolderGit2 },
+    { id: "awards", label: "Honors & Social Proof", icon: Trophy },
     { id: "skills", label: "Skills & Tools", icon: Cpu },
-    { id: "education", label: "Education & Honors", icon: GraduationCap },
+    { id: "education", label: "Education & Certs", icon: GraduationCap },
     { id: "arcade", label: "Interactive Arcade", icon: Gamepad2 },
   ];
 
@@ -151,9 +153,9 @@ export function Sidebar({
         })}
       </nav>
 
-      {/* Bottom Actions: AI Copilot & Resume */}
+      {/* Bottom Actions: AI Copilot & 1-Click PDF Resume */}
       <div className="p-4 border-t border-border/40 space-y-2 bg-card/60 backdrop-blur-xs">
-        {/* Pulsing AI Assistant Button matching reference */}
+        {/* Pulsing AI Assistant Button */}
         <Button
           variant="default"
           className="w-full justify-start bg-secondary text-secondary-foreground border-2 border-accent animate-ring-pulse-border hover:bg-accent hover:text-accent-foreground font-medium text-xs py-2 shadow-xs"
@@ -167,19 +169,19 @@ export function Sidebar({
           </span>
         </Button>
 
-        {/* Resume Link */}
+        {/* 1-Click Native PDF Download */}
         <a
-          href={contact.resume}
-          target="_blank"
-          rel="noopener noreferrer"
+          href="/Padmapiyush_Pathak_Resume.pdf"
+          download="Padmapiyush_Pathak_Data_Analyst_Resume.pdf"
           className="block w-full"
+          title="1-Click Direct Download Resume PDF"
         >
           <Button
             variant="outline"
-            className="w-full justify-start text-xs text-muted-foreground hover:text-foreground"
+            className="w-full justify-start text-xs text-muted-foreground hover:text-foreground hover:border-accent"
           >
-            <FileText className="h-3.5 w-3.5 mr-2" />
-            <span>Download Resume</span>
+            <Download className="h-3.5 w-3.5 mr-2 text-accent" />
+            <span>Download Resume (PDF)</span>
           </Button>
         </a>
       </div>
