@@ -8,16 +8,11 @@ import {
   ArrowDown,
   Globe,
   Award,
-  TrendingDown,
-  Clock,
-  Layers,
-  Database,
-  CheckCircle,
 } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "./Icons";
 import { Button } from "./ui/Button";
-import { Badge } from "./ui/Badge";
 import { Card } from "./ui/Card";
+import { ImpactCalculator } from "./ImpactCalculator";
 import { PORTFOLIO_DATA } from "../data/portfolioData";
 
 export function Hero() {
@@ -142,8 +137,8 @@ export function Hero() {
         </div>
       </div>
 
-      {/* Quantifiable Impact Metrics Grid (Proves why he's the best analyst!) */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-12">
+      {/* Quantifiable Impact Metrics Grid */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-6">
         {metrics.map((metric, idx) => (
           <Card
             key={idx}
@@ -161,6 +156,9 @@ export function Hero() {
           </Card>
         ))}
       </div>
+
+      {/* Interactive Automation Impact Calculator (Live Simulation Widget) */}
+      <ImpactCalculator />
 
       {/* About Me Section & Awards */}
       <div className="border-t border-border pt-8">

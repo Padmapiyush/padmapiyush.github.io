@@ -2,9 +2,12 @@ export interface Project {
   id: string;
   name: string;
   tagline: string;
+  category: "bi" | "cloud-lakehouse" | "ab-testing" | "streaming";
+  categoryLabel: string;
   description: string;
   problem: string;
   solution: string;
+  pipelineFlow?: string[];
   highlights: string[];
   skills: string[];
   link?: string;
@@ -47,6 +50,7 @@ export interface Award {
   title: string;
   organization: string;
   description: string;
+  highlightYear?: string;
 }
 
 export const PORTFOLIO_DATA = {
@@ -108,14 +112,16 @@ export const PORTFOLIO_DATA = {
     {
       title: "Spot Award",
       organization: "IDEMIA Public Security",
+      highlightYear: "2025",
       description:
-        "Awarded for outstanding operational execution, rapid turnaround on critical stakeholder dashboards, and automated reporting initiatives.",
+        "Awarded for outstanding operational execution, rapid turnaround on critical stakeholder dashboards, and automated reporting initiatives eliminating ~95% of manual toil.",
     },
     {
       title: "Shining Star Award",
       organization: "IDEMIA",
+      highlightYear: "2024",
       description:
-        "Recognized for exceptional technical depth, data modeling excellence, and driving cross-functional business impact through analytics.",
+        "Recognized for exceptional technical depth in enterprise data modeling, SQL optimization, and leading A/B testing projects driving 12% vendor cost reduction.",
     },
   ] as Award[],
   contact: {
@@ -134,7 +140,7 @@ export const PORTFOLIO_DATA = {
       periodLabel: "1 year 6 months",
       location: "Noida, Uttar Pradesh, India",
       isCurrent: true,
-      impactMetric: "95% manual effort reduction • 20+ dashboards",
+      impactMetric: "95% manual effort reduction • 20+ dashboards • 10M+ daily records",
       responsibilities: [
         "Designed and published over 20 enterprise Power BI dashboards, enhancing visibility of critical business KPIs across multi-national stakeholders.",
         "Architected and automated end-to-end reporting workflows, slashing recurring manual reporting effort by approximately 95%.",
@@ -231,12 +237,21 @@ export const PORTFOLIO_DATA = {
       id: "customer-churn",
       name: "Customer Churn & Retention Analytics",
       tagline: "Predictive Customer Intelligence & Executive Decision Portal",
+      category: "bi",
+      categoryLabel: "Power BI & BI Dashboards",
       description:
         "Built an end-to-end analytics solution segmenting customer behaviors, detecting churn risk indicators, and tracking retention KPIs via Power BI dashboards and SQL data models.",
       problem:
         "Business retention teams operated reactively, relying on retrospective monthly reports with no early-warning churn indicators.",
       solution:
         "Formulated statistical feature matrices in SQL and Python/Pandas, designed A/B testing evaluation frameworks, and deployed dynamic executive Power BI dashboards with DAX measures.",
+      pipelineFlow: [
+        "PostgreSQL Raw Data",
+        "SQL Cohort Transforms",
+        "Python Pandas Feature Matrix",
+        "DAX Measures",
+        "Power BI Executive Portal"
+      ],
       highlights: [
         "Engineered behavioral feature sets capturing frequency, monetary spend, support touchpoints, and activity degradation.",
         "Delivered interactive Power BI drill-through reports featuring dynamic scenario forecasting, cohort retention curves, and risk segmentation.",
@@ -260,12 +275,21 @@ export const PORTFOLIO_DATA = {
       id: "supply-chain",
       name: "Supply Chain Performance Intelligence",
       tagline: "Vendor Optimization, Delivery SLA Intelligence & Cost Reduction",
+      category: "ab-testing",
+      categoryLabel: "A/B Testing & Optimization",
       description:
         "Created an end-to-end operational intelligence suite analyzing vendor performance, purchase order lifecycles, and delivery variance for strategic supply chain decisions.",
       problem:
         "Fragmented supplier timelines and unmonitored SLA breaches led to unexpected warehouse bottlenecks and inflated procurement expediting fees.",
       solution:
         "Built a centralized SQL Server reporting data mart, automated data ingestion pipelines with Python, and developed Power BI operational dashboards for SLA tracking.",
+      pipelineFlow: [
+        "Supplier Feeds",
+        "SQL Server Staging",
+        "Python Anomaly Detection",
+        "A/B Hypothesis Evals",
+        "Power BI Vendor Scorecards"
+      ],
       highlights: [
         "Designed star-schema data models optimizing queries across millions of historical shipment, vendor, and fulfillment logs.",
         "Implemented anomaly detection routines identifying persistent delivery delays and pricing deviations.",
@@ -289,12 +313,21 @@ export const PORTFOLIO_DATA = {
       id: "azure-lakehouse",
       name: "Azure Medallion Lakehouse Pipeline (10M+ Records)",
       tagline: "End-to-End Bronze-Silver-Gold Lakehouse on Azure with ADF & Databricks",
+      category: "cloud-lakehouse",
+      categoryLabel: "Azure Cloud Lakehouse",
       description:
         "Designed and implemented an enterprise-grade Bronze-Silver-Gold lakehouse architecture on Microsoft Azure using ADF, Databricks (PySpark), and Delta tables processing 10M+ daily records.",
       problem:
         "Unreliable legacy batch feeds suffered from schema drift, high compute latency, and lack of upstream data lineage, breaking business dashboards.",
       solution:
         "Engineered a resilient Medallion lakehouse pattern: raw landing in Bronze, cleansed and conformally modeled in Silver, and aggregated into business-ready dimensional models in Gold with Delta ACID reliability.",
+      pipelineFlow: [
+        "ADLS Gen2 Bronze (Raw)",
+        "Azure Data Factory (ADF)",
+        "Databricks PySpark (Silver Cleanse)",
+        "Delta Lake (Gold Aggregates)",
+        "Power BI DirectLake"
+      ],
       highlights: [
         "Constructed automated data pipelines in Azure Data Factory with dynamic parameterization, error notifications, and monitoring.",
         "Authored modular PySpark transformation jobs on Databricks with automated schema enforcement, data quality validation, and partition optimizations.",
@@ -318,12 +351,21 @@ export const PORTFOLIO_DATA = {
       id: "orders-streaming",
       name: "Real-Time Orders Streaming & Anomaly Detection",
       tagline: "Distributed Event Ingestion & Sliding-Window Analytics Platform",
+      category: "streaming",
+      categoryLabel: "Real-Time Streaming",
       description:
         "Engineered a real-time event streaming platform that ingests live order events, computes sliding-window aggregations, and surfaces operational metrics.",
       problem:
         "Business operations lacked sub-minute visibility into order surges, payment failure anomalies, and inventory bottlenecks due to batch latency.",
       solution:
         "Streamed simulated event payloads via Apache Kafka into Spark Structured Streaming for real-time windowed aggregations, orchestrated transformations with Airflow and dbt, all orchestrated in Docker.",
+      pipelineFlow: [
+        "Event Emitters",
+        "Apache Kafka Topics",
+        "Spark Structured Streaming",
+        "dbt Lineage Validation",
+        "Real-Time Ops Metrics"
+      ],
       highlights: [
         "Architected scalable Kafka topic partitions and consumer groups to absorb irregular traffic surges without message drop.",
         "Implemented Spark Structured Streaming watermarking and stateful stream-to-batch joins for anomaly detection.",
